@@ -1,0 +1,14 @@
+.List select {
+    font-size: var(--font-size-large);
+    color: var(--color-text-selected);
+
+    background-color: var(--color-bg-light);
+
+    padding: 0.1em;
+    width: 100%;
+}
+
+.List.horizontal {
+    flex-direction: row;
+    gap: 1em;
+}

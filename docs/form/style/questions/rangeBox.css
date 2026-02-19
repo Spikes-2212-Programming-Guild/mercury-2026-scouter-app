@@ -1,0 +1,36 @@
+.RangeBox {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.RangeBox.horizontal {
+    gap: 1em;
+}
+
+.RangeBox > div {
+    display: flex;
+    align-items: center;
+    gap: 0.85em;
+    justify-content: flex-end;
+    align-self: center;
+    width: 95%;
+}
+
+.RangeBox label {
+    text-align: center;
+    font-size: var(--font-size-large);
+    background-color: var(--color-bg-light);
+    user-select: none;
+    padding: 0.1em;
+    width: 100%;
+}
+
+.RangeBox button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Fira Mono", "JetBrains Mono", "Consolas", monospace;
+    font-size: 3em;
+    cursor: pointer;
+}

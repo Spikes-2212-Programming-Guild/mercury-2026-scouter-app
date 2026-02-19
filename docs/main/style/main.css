@@ -1,0 +1,144 @@
+/* ---------- Base ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: system-ui, Arial, sans-serif;
+    background: #1f232a;
+    color: #f0f0f0;
+}
+
+/* ---------- App Layout ---------- */
+#root {
+    height: 100%;
+}
+
+#main-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ---------- Page Container ---------- */
+#page-container {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+#page-container > div[hidden] {
+    display: none;
+}
+
+/* ---------- Typography ---------- */
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.4em;
+}
+
+h2 {
+    font-size: 1.2rem;
+    color: #cfcfcf;
+    margin-bottom: 1em;
+}
+
+p, label {
+    font-size: 1rem;
+    color: #cfcfcf;
+}
+
+/* ---------- Buttons ---------- */
+button {
+    background: #2d6cdf;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #356fe6;
+}
+
+/* ---------- Inputs ---------- */
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    font-size: 1rem;
+    background: #2a2f38;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 4px;
+}
+
+input::placeholder {
+    color: #9aa0a6;
+}
+
+/* ---------- Scouting ---------- */
+#Scouting {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ---------- Settings ---------- */
+#Settings {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.settings-component {
+    background: #262b33;
+    padding: 12px;
+    border-radius: 6px;
+}
+
+/* ---------- About ---------- */
+#About {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#About a {
+    color: #7aa2ff;
+    text-decoration: none;
+}
+
+#About a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Bottom Navigation ---------- */
+#bottom-navigation {
+    display: flex;
+    gap: 6px;
+    padding: 8px;
+    background: #262b33;
+    border-top: 1px solid #3a3f47;
+}
+
+#bottom-navigation button {
+    flex: 1;
+    background: transparent;
+    color: #e0e0e0;
+}
+
+#bottom-navigation button:hover {
+    background: #333944;
+}
+
+/* Optional active state */
+#bottom-navigation button.active {
+    background: #2d6cdf;
+    color: white;
+}

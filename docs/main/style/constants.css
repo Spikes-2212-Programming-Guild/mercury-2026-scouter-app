@@ -1,0 +1,98 @@
+
+:root {
+    --color-bg: hsl(222, 18%, 16%);
+    --color-bg-light: hsl(222, 18%, 22%);
+    --color-bg-hover: hsl(222, 18%, 28%);
+
+    --color-text: hsl(0, 0%, 92%);
+    --color-text-muted: hsl(0, 0%, 85%);
+    --color-text-error: hsl(0, 80%, 60%);
+
+    --color-border: hsl(0, 0%, 90%);
+
+    --border-width-small: 0.1em;
+    --border-width-medium: 0.15em;
+    --border-width-large: 0.175em;
+
+    --border-radius-small: 0.2em;
+    --border-radius-medium: 0.4em;
+    --border-radius-large: 0.6em;
+    --border-radius-x-large: 1.6em;
+
+    --font-size-small: clamp(1.25em, 1.2vw + 0.8vh + 0.3em, 1.75em);
+    --font-size-medium: clamp(1.5em, 1.8vw + 1.2vh + 0.5em, 2em);
+    --font-size-large: clamp(1.75em, 1.8vw + 1.2vh + 0.5em, 2.5em);
+
+    --shadow-small: 0 0.1em 0.1em;
+    --shadow-medium: 0 0.2em 0.2em;
+    --shadow-large: 0 0.3em 0.3em;
+
+    --shadow-color-light: hsl(0, 0%, 30%);
+    --shadow-color-gray: hsl(0, 0%, 14%);
+    --shadow-color-dark: hsl(0, 0%, 12%);
+
+    --text-shadow: 0 0.05em 0.1em
+}
+
+/*
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", Roboto, sans-serif;
+}
+
+body {
+    background: #292d4c;
+    color: var(--color-text);
+}
+
+#main-app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+h2 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #aab0ff;
+    margin-bottom: 20px;
+}
+
+#page-container {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+#bottom-navigation {
+    background-color: #294bb7;
+
+    display: flex;
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 8vh;
+}
+
+#bottom-navigation button {
+    font-size: var(--font-size-small);
+    flex: 1;
+
+    background: none;
+    border: none;
+}
+
+
+ */

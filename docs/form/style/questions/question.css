@@ -1,0 +1,65 @@
+.question {
+    margin-bottom: 1.25em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.question.horizontal {
+    flex-direction: row;
+}
+
+.question:not(.depth) {
+    width: 95% !important;
+    display: inline-flex;
+}
+
+.question input {
+    height: 1.5em;
+    font-size: var(--font-size-large);
+    width: 100%;
+    background-color: var(--color-bg-light);
+    box-shadow: var(--shadow-medium) var(--shadow-color-gray);
+}
+
+.question h1 {
+    font-size: var(--font-size-medium);
+    margin-bottom: 0.35em;
+    text-shadow: var(--text-shadow) var(--shadow-color-dark);
+}
+
+/* ===== changing focus outline ===== */
+:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+/* ===== Question invalid border ===== */
+.invalid:not(:focus) {
+    border: 3px solid var(--color-text-error) !important;
+}
+
+/* ===== input border & box-shadow ===== */
+input, select, form, textarea, .RangeBox label {
+    border-radius: var(--border-radius-medium);
+    border: var(--color-bg-light) 3px solid;
+
+    color: var(--color-text-selected);
+    box-shadow: var(--shadow-medium) var(--shadow-color-gray) !important;
+}
+
+/* Remove default input arrow buttons (spins) */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Remove datalist dropdown arrow */
+input::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
