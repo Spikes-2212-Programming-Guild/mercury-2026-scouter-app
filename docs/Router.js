@@ -23,7 +23,7 @@ export function navigateToMain() {
     mainApp.render()
 }
 
-const DEBUG = true;
+const DEBUG = false;
 
 if (DEBUG) {
     setToLocalStorage(LOCAL_STORAGE.FORM_DATA, JSON.stringify(formData));

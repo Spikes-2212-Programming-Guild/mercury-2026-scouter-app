@@ -1,12 +1,12 @@
-@import "questions/question.css";
-@import "questions/list.css";
-@import "questions/commentBox.css";
-@import "questions/radio.css";
-@import "questions/scorebox.css";
-@import "questions/rangeBox.css";
+@import "../questions/question.css";
+@import "../questions/list/list.css";
+@import "../questions/textarea/textarea.css";
+@import "../questions/radio/radio.css";
+@import "../questions/scorebox/scorebox.css";
+@import "../questions/rangebox/rangeBox.css";
 @import "bottomNavigation.css";
 @import "topNavigation.css";
-@import "colorThemes.css";
+@import "../config/colorThemes.css";
 @import "constants.css";
 
 * {
@@ -80,5 +80,5 @@ body {
 .container-title.depth-0 {
     font-weight: bold;
     color: var(--color-text-selected);
-    font-size:  var(--font-size-medium);
+    font-size: var(--font-size-medium);
 }

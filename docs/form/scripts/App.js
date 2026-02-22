@@ -1,4 +1,3 @@
-import {questionRenderers} from './QuestionRenderer.js';
 import {
     AUTO_DURATION_MS,
     AUTO_PAGE_INDEX,
@@ -7,8 +6,25 @@ import {
     SWIPE_VERTICAL_THRESHOLD,
     TELEOP_PAGE_INDEX,
     TRIGGER_ID
-} from "./Constants.js";
+} from "../config/Constants.js";
 import {getFromLocalStorage, LOCAL_STORAGE, removeFromLocalStorage, setToLocalStorage} from "../../Storage.js";
+import {renderRadio} from "../questions/radio/Radio.js";
+import {renderList} from "../questions/list/List.js";
+import {renderAutoComplete} from "../questions/autocomplete/AutoComplete.js";
+import {renderScoreBox} from "../questions/scorebox/ScoreBox.js";
+import {renderRangeBox} from "../questions/rangebox/RangeBox.js";
+import {renderTextArea} from "../questions/textarea/TextArea.js";
+import {renderInputBox} from "../questions/inputbox/InputBox.js";
+
+const questionRenderers = {
+    'InputBox': renderInputBox,
+    'Radio': renderRadio,
+    'List': renderList,
+    'AutoComplete': renderAutoComplete,
+    'ScoreBox': renderScoreBox,
+    'TextArea': renderTextArea,
+    'RangeBox': renderRangeBox,
+};
 
 /*
    TODO:
@@ -16,7 +32,7 @@ import {getFromLocalStorage, LOCAL_STORAGE, removeFromLocalStorage, setToLocalSt
     2. try to find a way to prevent people scouting to the same robot
     3. make all question inputs the same size for a more concrete app
     4. make misses for 1-3 or verbal description
-    5. 
+    5. make the top navigation bar a slider!
 
  */
 
@@ -42,7 +58,7 @@ export class FormApp {
 
         this.autoStartTeleop();
         this.setUpSwipeListeners();
-        
+
         this.displayPage(Number(getFromLocalStorage(LOCAL_STORAGE.PAGE_INDEX) || 0));
     }
 
@@ -94,8 +110,7 @@ export class FormApp {
         const buttons = document.getElementById('top-navigation').children;
         const pages = document.getElementById('page-container').children;
 
-        document.documentElement.
-            setAttribute('data-theme', this.form.pages[pageIndex].color_theme);
+        document.documentElement.setAttribute('data-theme', this.form.pages[pageIndex].color_theme);
 
         const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
         const max = PRESENT_TOP_NAVIGATION_BUTTONS;
@@ -170,7 +185,7 @@ export class FormApp {
     createQuestion(questionData) {
         const container = document.createElement('div');
         container.classList.add("question", questionData.type);
-        if (questionData.align ===  "horizontal") {
+        if (questionData.align === "horizontal") {
             container.classList.add('horizontal')
         }
 
@@ -212,7 +227,6 @@ export class FormApp {
 
         this.appContainer.appendChild(topNavContainer);
     }
-
 
 
     renderBottomNavigationBar() {
@@ -266,7 +280,7 @@ export class FormApp {
                 const question = document.getElementById(questionId);
                 question.classList.remove("invalid")
 
-                if (value === null || value === "" || value === undefined) {
+                if (value === null || value === undefined) {
                     this.displayPage(pageIndex);
                     question.classList.toggle("invalid")
                     question.scrollIntoView({block: 'center', inline: 'nearest'});

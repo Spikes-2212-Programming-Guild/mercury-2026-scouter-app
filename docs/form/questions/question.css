@@ -14,12 +14,12 @@
     display: inline-flex;
 }
 
-.question input {
-    height: 1.5em;
+.question input, select {
+    height: 1.65em;
     font-size: var(--font-size-large);
     width: 100%;
     background-color: var(--color-bg-light);
-    box-shadow: var(--shadow-medium) var(--shadow-color-gray);
+    box-shadow: var(--shadow-small) var(--shadow-color-gray);
 }
 
 .question h1 {

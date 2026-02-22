@@ -1,7 +1,3 @@
-export const SCOREBOX_MIN_VALUE = 0;
-export const SCOREBOX_MAX_VALUE = 100;
-export const SCOREBOX_DEFAULT_VALUE = 0;
-
 export const AUTO_DURATION_MS = 15 * 1000;
 export const TRIGGER_ID = 'left-starting-line';
 export const TELEOP_PAGE_INDEX = 2;

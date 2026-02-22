@@ -1,9 +1,9 @@
-.CommentBox textarea {
+.TextArea textarea {
     text-align: start;
     font-size: var(--font-size-medium);
 
     background-color: var(--color-bg-light);
-
+    overflow: hidden;
     min-height: 7.5em;
     width: 100%;
 }
