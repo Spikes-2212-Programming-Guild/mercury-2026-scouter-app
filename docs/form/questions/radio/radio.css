@@ -22,7 +22,7 @@
 }
 
 input[type="radio"]:checked + label {
-    color: var(--color-text-selected);
+    color: var(--color-secondary-text);
     background-color: var(--color-secondary);
     border-radius: 0.5em;
 }

@@ -1,6 +1,5 @@
 .List select {
     font-size: var(--font-size-large);
-    color: var(--color-text-selected);
     background-color: var(--color-bg-light);
     width: 100%;
 }

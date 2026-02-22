@@ -2,7 +2,6 @@
     "pages": [
         {
             "title": "Pre",
-            "color_theme": "purple",
             "questions": [
                 {
                     "id": "match",
@@ -325,7 +324,6 @@
         },
         {
             "title": "Auto",
-            "color_theme": "green",
             "questions": [
                 {
                     "id": "left-starting-line",
@@ -355,10 +353,9 @@
                             "type": "List",
                             "choices": [
                                 "100%",
-                                "80%",
-                                "60%",
-                                "40%",
-                                "20%",
+                                "75%",
+                                "50%",
+                                "25%",
                                 "0%"
                             ]
                         }
@@ -425,7 +422,6 @@
         },
         {
             "title": "Trans",
-            "color_theme": "orange",
             "questions": [
                 {
                     "id": "auto-won",
@@ -455,10 +451,9 @@
                             "type": "List",
                             "choices": [
                                 "100%",
-                                "80%",
-                                "60%",
-                                "40%",
-                                "20%",
+                                "75%",
+                                "50%",
+                                "25%",
                                 "0%"
                             ]
                         }
@@ -485,7 +480,6 @@
         },
         {
             "title": "Switch1",
-            "color_theme": "pink",
             "questions": [
                 {
                     "type": "container",
@@ -506,10 +500,9 @@
                             "type": "List",
                             "choices": [
                                 "100%",
-                                "80%",
-                                "60%",
-                                "40%",
-                                "20%",
+                                "75%",
+                                "50%",
+                                "25%",
                                 "0%"
                             ]
                         }
@@ -536,7 +529,6 @@
         },
         {
             "title": "Switch2",
-            "color_theme": "teal",
             "questions": [
                 {
                     "type": "container",
@@ -557,10 +549,9 @@
                             "type": "List",
                             "choices": [
                                 "100%",
-                                "80%",
-                                "60%",
-                                "40%",
-                                "20%",
+                                "75%",
+                                "50%",
+                                "25%",
                                 "0%"
                             ]
                         }
@@ -587,7 +578,6 @@
         },
         {
             "title": "Switch3",
-            "color_theme": "forest",
             "questions": [
                 {
                     "type": "container",
@@ -608,10 +598,9 @@
                             "type": "List",
                             "choices": [
                                 "100%",
-                                "80%",
-                                "60%",
-                                "40%",
-                                "20%",
+                                "75%",
+                                "50%",
+                                "25%",
                                 "0%"
                             ]
                         }
@@ -638,7 +627,6 @@
         },
         {
             "title": "Switch4",
-            "color_theme": "light-blue",
             "questions": [
                 {
                     "type": "container",
@@ -659,10 +647,9 @@
                             "type": "List",
                             "choices": [
                                 "100%",
-                                "80%",
-                                "60%",
-                                "40%",
-                                "20%",
+                                "75%",
+                                "50%",
+                                "25%",
                                 "0%"
                             ]
                         }
@@ -689,7 +676,6 @@
         },
         {
             "title": "End",
-            "color_theme": "lavender",
             "questions": [
                 {
                     "type": "container",
@@ -732,7 +718,6 @@
         },
         {
             "title": "Post",
-            "color_theme": "ocean",
             "questions": [
                 {
                     "id": "post-pass-strategy",

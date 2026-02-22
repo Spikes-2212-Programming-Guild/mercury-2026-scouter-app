@@ -24,6 +24,7 @@
 
 .question h1 {
     font-size: var(--font-size-medium);
+    color: var(--color-text);
     margin-bottom: 0.35em;
     text-shadow: var(--text-shadow) var(--shadow-color-dark);
 }
@@ -44,7 +45,7 @@ input, select, form, textarea, .RangeBox label {
     border-radius: var(--border-radius-medium);
     border: var(--color-bg-light) 3px solid;
 
-    color: var(--color-text-selected);
+    color: var(--color-secondary-text);
     box-shadow: var(--shadow-medium) var(--shadow-color-gray) !important;
 }
 

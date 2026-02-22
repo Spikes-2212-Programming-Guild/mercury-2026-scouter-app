@@ -15,6 +15,8 @@ import {renderScoreBox} from "../questions/scorebox/ScoreBox.js";
 import {renderRangeBox} from "../questions/rangebox/RangeBox.js";
 import {renderTextArea} from "../questions/textarea/TextArea.js";
 import {renderInputBox} from "../questions/inputbox/InputBox.js";
+import {navigateToMain} from "../../Router.js";
+import {SubmissionManager} from "./SubmissionManager.js";
 
 const questionRenderers = {
     'InputBox': renderInputBox,
@@ -49,17 +51,23 @@ export class FormApp {
         if (!formData) return;
 
         this.form = JSON.parse(formData)
+        this.submissionManager = new SubmissionManager()
 
         this.pageQuestions = this.indexAllPages()
         this.renderTopNavigationBar()
         this.renderAllPages();
+        this.renderReturnButton();
         this.renderClearAllButton();
         this.renderBottomNavigationBar()
 
-        this.autoStartTeleop();
+        // this.autoStartTeleop();
         this.setUpSwipeListeners();
-
         this.displayPage(Number(getFromLocalStorage(LOCAL_STORAGE.PAGE_INDEX) || 0));
+        this.setColorTheme()
+    }
+
+    setColorTheme() {
+        document.documentElement.setAttribute('data-theme', "teal");
     }
 
     traverseRecursively(node, visit) {
@@ -110,8 +118,6 @@ export class FormApp {
         const buttons = document.getElementById('top-navigation').children;
         const pages = document.getElementById('page-container').children;
 
-        document.documentElement.setAttribute('data-theme', this.form.pages[pageIndex].color_theme);
-
         const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
         const max = PRESENT_TOP_NAVIGATION_BUTTONS;
         const total = this.form.pages.length;
@@ -146,6 +152,7 @@ export class FormApp {
 
     renderPage(pageData) {
         const page = document.createElement('div');
+        page.classList.add('page')
 
         page.appendChild(document.createElement('br')); // TODO - remove this shit
 
@@ -202,6 +209,17 @@ export class FormApp {
         return container;
     }
 
+    renderReturnButton() {
+        const returnButton = document.createElement('button');
+        returnButton.textContent = 'Return to main menu';
+        returnButton.id = 'return-button';
+        returnButton.onclick = () => {
+            if (!confirm("Confirm Return")) return;
+            navigateToMain()
+        }
+        this.appContainer.appendChild(returnButton);
+    }
+
     renderClearAllButton() {
         const resetButton = document.createElement('button');
         resetButton.textContent = 'Clear All';
@@ -228,7 +246,6 @@ export class FormApp {
         this.appContainer.appendChild(topNavContainer);
     }
 
-
     renderBottomNavigationBar() {
         const bottomNavContainer = document.createElement('div');
         bottomNavContainer.id = 'bottom-navigation';
@@ -241,7 +258,7 @@ export class FormApp {
         const submitButton = document.createElement('button');
         submitButton.textContent = 'Submit';
         submitButton.id = 'submit-button';
-        submitButton.onclick = () => this.submitAllAnswers();
+        submitButton.onclick = () => this.submit();
 
         const prevButton = document.createElement('button');
         prevButton.textContent = 'Previous';
@@ -268,7 +285,24 @@ export class FormApp {
         this.displayPage(cur);
     }
 
-    submitAllAnswers() {
+    async submit() {
+
+        // let answers = this.getFormAnswers()
+
+        let answers = { "hello": "test" };
+
+        // if all answers are invalid
+        if (!answers) return
+
+        if (!confirm("Confirm Submit")) return;
+
+        this.clearAllQuestions();
+        navigateToMain();
+
+        await this.submissionManager.addSubmission(answers);
+    }
+
+    getFormAnswers() {
         let answers = {}
 
         for (let pageIndex = 0; pageIndex < this.form.pages.length; pageIndex++) {
@@ -284,22 +318,16 @@ export class FormApp {
                     this.displayPage(pageIndex);
                     question.classList.toggle("invalid")
                     question.scrollIntoView({block: 'center', inline: 'nearest'});
-                    return // if invalid
+                    return null // if invalid
                 }
 
                 answers[questionId] = value;
             }
         }
 
-        console.log(answers);
+        return answers;
     }
 
-    /*
-        Automatically transitions to the teleop page once the autonomous phase ends.
-        When the user answers the first autonomous question (TRIGGER_ID),
-        a timer begins, and after AUTO_DURATION_MS, the page switches to teleop
-        ensuring the scouter doesn't forget to move page after auto.
-    */
     autoStartTeleop() {
         const triggerQuestion = document.getElementById(TRIGGER_ID);
         if (!triggerQuestion) return console.warn(`Trigger Element '${TRIGGER_ID}' not found`);
@@ -347,8 +375,3 @@ export class FormApp {
         });
     }
 }
-
-// window.onload = () => {
-//     const app = new FormApp();
-//     app.setup();
-// };

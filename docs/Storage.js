@@ -6,6 +6,8 @@ export const LOCAL_STORAGE = {
     FORM_VERSION: 'formVersion',
     PAGE_ID: 'pageId',
     PAGE_INDEX: 'pageIndex',
+    CURRENT_APP: 'currentApp',
+    SUBMISSION_QUEUE: 'submissionQueue',
 };
 
 export function setToLocalStorage(key, value) {

@@ -20,7 +20,7 @@
 
 #top-navigation > button.active {
     font-weight: bold;
-    color: var(--color-text);
+    color: var(--color-secondary-text);
     background-color: color-mix(in srgb, var(--color-primary) 90%, black);
     border-bottom: 3px solid var(--color-border);
 }
