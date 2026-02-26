@@ -6,7 +6,7 @@ import {
     SWIPE_VERTICAL_THRESHOLD,
     TELEOP_PAGE_INDEX,
     TRIGGER_ID
-} from "../config/Constants.js";
+} from "../../config/Constants.js";
 import {getFromLocalStorage, LOCAL_STORAGE, removeFromLocalStorage, setToLocalStorage} from "../../Storage.js";
 import {renderRadio} from "../questions/radio/Radio.js";
 import {renderList} from "../questions/list/List.js";
@@ -17,6 +17,7 @@ import {renderTextArea} from "../questions/textarea/TextArea.js";
 import {renderInputBox} from "../questions/inputbox/InputBox.js";
 import {navigateToMain} from "../../Router.js";
 import {SubmissionManager} from "./SubmissionManager.js";
+import {renderCheckBox} from "../questions/checkbox/CheckBox.js";
 
 const questionRenderers = {
     'InputBox': renderInputBox,
@@ -26,6 +27,7 @@ const questionRenderers = {
     'ScoreBox': renderScoreBox,
     'TextArea': renderTextArea,
     'RangeBox': renderRangeBox,
+    'CheckBox': renderCheckBox,
 };
 
 /*
@@ -172,10 +174,9 @@ export class FormApp {
         container.classList.add(
             'question-container',
             'depth',
-            `depth-${depth}`
+            `depth-${depth}`,
+            `${node.align}`
         );
-
-        container.style.flexDirection = node.align === "horizontal" ? "row" : "column";
 
         const title = document.createElement('legend');
         title.textContent = node.title;
@@ -287,9 +288,9 @@ export class FormApp {
 
     async submit() {
 
-        // let answers = this.getFormAnswers()
+        let answers = this.getFormAnswers()
 
-        let answers = { "hello": "test" };
+        // let answers = { "hello": "test" };
 
         // if all answers are invalid
         if (!answers) return
@@ -297,6 +298,7 @@ export class FormApp {
         if (!confirm("Confirm Submit")) return;
 
         this.clearAllQuestions();
+        this.displayPage(0);
         navigateToMain();
 
         await this.submissionManager.addSubmission(answers);
@@ -314,7 +316,9 @@ export class FormApp {
                 const question = document.getElementById(questionId);
                 question.classList.remove("invalid")
 
-                if (value === null || value === undefined) {
+                console.log(`${questionId}: ${value}`)
+
+                if (value === null || value === '' || value === undefined) {
                     this.displayPage(pageIndex);
                     question.classList.toggle("invalid")
                     question.scrollIntoView({block: 'center', inline: 'nearest'});

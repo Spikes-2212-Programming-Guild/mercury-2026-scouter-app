@@ -1,11 +1,12 @@
 @import "constants.css";
-@import "../config/colorThemes.css";
+@import "../../config/colorThemes.css";
 @import "../questions/question.css";
 @import "../questions/list/list.css";
 @import "../questions/textarea/textarea.css";
 @import "../questions/radio/radio.css";
 @import "../questions/scorebox/scorebox.css";
 @import "../questions/rangebox/rangeBox.css";
+@import "../questions/checkbox/checkbox.css";
 @import "bottomNavigation.css";
 @import "topNavigation.css";
 
@@ -42,12 +43,22 @@ body, .page {
     text-shadow: var(--text-shadow) var(--shadow-color-gray);
 }
 
-/* ===== Container of Questions ===== */
 .question-container {
     border: var(--color-border) var(--border-width-small) solid;
     border-radius: var(--border-radius-medium);
     margin-bottom: 0.5em;
     box-shadow: var(--shadow-medium) var(--shadow-color-dark);
+}
+
+/*
+
+make the columns and rows able to change from config
+
+ */
+.question-container.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75em;
 }
 
 .question-container.depth-0 {

@@ -1,6 +1,7 @@
 #top-navigation {
     display: flex;
     position: sticky;
+    z-index: 999;
 
     top: 0;
     left: 0;

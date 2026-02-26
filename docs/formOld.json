@@ -4,9 +4,11 @@
             "title": "Pre",
             "questions": [
                 {
-                    "id": "scouter-name",
-                    "title": "Scouter name",
-                    "type": "InputBox"
+                    "id": "match",
+                    "title": "Match Number",
+                    "align": "horizontal",
+                    "type": "ScoreBox",
+                    "defaultValue": ""
                 },
                 {
                     "id": "game-type",
@@ -20,11 +22,11 @@
                 {
                     "id": "alliance",
                     "title": "Alliance",
-                    "type": "List",
                     "choices": [
                         "Red",
                         "Blue"
-                    ]
+                    ],
+                    "type": "List"
                 },
                 {
                     "id": "team-number",
@@ -314,16 +316,24 @@
                     "type": "AutoComplete"
                 },
                 {
-                    "id": "match",
-                    "title": "Match Number",
-                    "type": "ScoreBox",
-                    "defaultValue": ""
+                    "id": "scouter-name",
+                    "title": "Scouter name",
+                    "type": "InputBox"
                 }
             ]
         },
         {
             "title": "Auto",
             "questions": [
+                {
+                    "id": "left-starting-line",
+                    "title": "Left Starting Line",
+                    "type": "Radio",
+                    "choices": [
+                        "No",
+                        "Yes"
+                    ]
+                },
                 {
                     "type": "container",
                     "title": "Hub",
@@ -337,8 +347,8 @@
                             "jumpLength": 5
                         },
                         {
-                            "id": "auto-hub-accuracy",
-                            "title": "Accuracy",
+                            "id": "auto-hub-miss",
+                            "title": "Misses",
                             "align": "horizontal",
                             "type": "List",
                             "choices": [
@@ -374,46 +384,60 @@
                 },
                 {
                     "type": "container",
-                    "title": "Got fuel from",
-                    "align": "grid",
+                    "title": "Picked up From",
                     "questions": [
                         {
-                            "id": "auto-picked-from-depot",
+                            "id": "auto-depot",
                             "title": "Depot",
                             "align": "horizontal",
-                            "type": "CheckBox"
+                            "type": "Radio",
+                            "choices": [
+                                "Yes",
+                                "No"
+                            ]
                         },
                         {
-                            "id": "auto-picked-from-outpost",
+                            "id": "auto-outpost",
                             "title": "Outpost",
                             "align": "horizontal",
-                            "type": "CheckBox"
+                            "type": "Radio",
+                            "choices": [
+                                "Yes",
+                                "No"
+                            ]
                         },
                         {
-                            "id": "auto-picked-from-neutral",
+                            "id": "auto-neutral",
                             "title": "Neutral",
                             "align": "horizontal",
-                            "type": "CheckBox"
-                        },
-                        {
-                            "id": "auto-picked-from-floor",
-                            "title": "Floor",
-                            "align": "horizontal",
-                            "type": "CheckBox"
+                            "type": "Radio",
+                            "choices": [
+                                "Yes",
+                                "No"
+                            ]
                         }
                     ]
                 }
             ]
         },
         {
-            "title": "Teleop",
+            "title": "Trans",
             "questions": [
+                {
+                    "id": "auto-won",
+                    "title": "Auto Won",
+                    "type": "Radio",
+                    "choices": [
+                        "Yes",
+                        "No"
+                    ]
+                },
                 {
                     "type": "container",
                     "title": "Hub",
                     "questions": [
                         {
-                            "id": "teleop-hub-score",
+                            "id": "trans-hub-score",
                             "title": "Scores",
                             "align": "horizontal",
                             "type": "RangeBox",
@@ -421,8 +445,8 @@
                             "jumpLength": 5
                         },
                         {
-                            "id": "teleop-hub-accuracy",
-                            "title": "Accuracy",
+                            "id": "trans-hub-miss",
+                            "title": "Misses",
                             "align": "horizontal",
                             "type": "List",
                             "choices": [
@@ -436,73 +460,216 @@
                     ]
                 },
                 {
-                    "id": "teleop-pass",
+                    "id": "trans-pass",
                     "title": "Passes",
-                    "align": "horizontal",
                     "type": "RangeBox",
                     "startingValue": 0,
                     "jumpLength": 5
                 },
                 {
+                    "id": "trans-defense",
+                    "title": "Played Defense",
+                    "type": "List",
+                    "choices": [
+                        "Yes",
+                        "No",
+                        "Sometimes"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Switch1",
+            "questions": [
+                {
                     "type": "container",
-                    "title": "Got fuel from",
-                    "align": "grid",
+                    "title": "Hub",
                     "questions": [
                         {
-                            "id": "teleop-picked-from-depot",
-                            "title": "Depot",
+                            "id": "switch1-hub-score",
+                            "title": "Scores",
                             "align": "horizontal",
-                            "type": "CheckBox"
+                            "type": "RangeBox",
+                            "startingValue": 0,
+                            "jumpLength": 5
                         },
                         {
-                            "id": "teleop-picked-from-outpost",
-                            "title": "Outpost",
+                            "id": "switch1-hub-miss",
+                            "title": "Misses",
                             "align": "horizontal",
-                            "type": "CheckBox"
-                        },
-                        {
-                            "id": "teleop-picked-from-neutral",
-                            "title": "Neutral",
-                            "align": "horizontal",
-                            "type": "CheckBox"
-                        },
-                        {
-                            "id": "teleop-picked-from-floor",
-                            "title": "Floor",
-                            "align": "horizontal",
-                            "type": "CheckBox"
+                            "type": "List",
+                            "choices": [
+                                "100%",
+                                "75%",
+                                "50%",
+                                "25%",
+                                "0%"
+                            ]
                         }
                     ]
                 },
                 {
+                    "id": "switch1-pass",
+                    "title": "Passes",
+                    "type": "RangeBox",
+                    "startingValue": 0,
+                    "jumpLength": 5
+                },
+                {
+                    "id": "switch1-defense",
+                    "title": "Played Defense",
+                    "type": "Radio",
+                    "choices": [
+                        "Yes",
+                        "No",
+                        "Sometimes"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Switch2",
+            "questions": [
+                {
                     "type": "container",
-                    "title": "While inactive",
-                    "align": "grid",
+                    "title": "Hub",
                     "questions": [
                         {
-                            "id": "teleop-defense",
-                            "title": "Defended",
+                            "id": "switch2-hub-score",
+                            "title": "Scores",
                             "align": "horizontal",
-                            "type": "CheckBox"
+                            "type": "RangeBox",
+                            "startingValue": 0,
+                            "jumpLength": 5
                         },
                         {
-                            "id": "teleop-inactive-collected",
-                            "title": "Collected",
+                            "id": "switch2-hub-miss",
+                            "title": "Misses",
                             "align": "horizontal",
-                            "type": "CheckBox"
-                        },
-                        {
-                            "id": "teleop-inactive-passes",
-                            "title": "Passed",
-                            "align": "horizontal",
-                            "type": "CheckBox"
-                        },
-                        {
-                            "id": "teleop-blocked",
-                            "title": "Blocked bump or trench",
-                            "align": "horizontal",
-                            "type": "CheckBox"
+                            "type": "List",
+                            "choices": [
+                                "100%",
+                                "75%",
+                                "50%",
+                                "25%",
+                                "0%"
+                            ]
                         }
+                    ]
+                },
+                {
+                    "id": "switch2-pass",
+                    "title": "Passes",
+                    "type": "RangeBox",
+                    "startingValue": 0,
+                    "jumpLength": 5
+                },
+                {
+                    "id": "switch2-defense",
+                    "title": "Played Defense",
+                    "type": "Radio",
+                    "choices": [
+                        "Yes",
+                        "No",
+                        "Sometimes"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Switch3",
+            "questions": [
+                {
+                    "type": "container",
+                    "title": "Hub",
+                    "questions": [
+                        {
+                            "id": "switch3-hub-score",
+                            "title": "Scores",
+                            "align": "horizontal",
+                            "type": "RangeBox",
+                            "startingValue": 0,
+                            "jumpLength": 5
+                        },
+                        {
+                            "id": "switch3-hub-miss",
+                            "title": "Misses",
+                            "align": "horizontal",
+                            "type": "List",
+                            "choices": [
+                                "100%",
+                                "75%",
+                                "50%",
+                                "25%",
+                                "0%"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "switch3-pass",
+                    "title": "Passes",
+                    "type": "RangeBox",
+                    "startingValue": 0,
+                    "jumpLength": 5
+                },
+                {
+                    "id": "switch3-defense",
+                    "title": "Played Defense",
+                    "type": "Radio",
+                    "choices": [
+                        "Yes",
+                        "No",
+                        "Sometimes"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Switch4",
+            "questions": [
+                {
+                    "type": "container",
+                    "title": "Hub",
+                    "questions": [
+                        {
+                            "id": "switch4-hub-score",
+                            "title": "Scores",
+                            "align": "horizontal",
+                            "type": "RangeBox",
+                            "startingValue": 0,
+                            "jumpLength": 5
+                        },
+                        {
+                            "id": "switch4-hub-miss",
+                            "title": "Misses",
+                            "align": "horizontal",
+                            "type": "List",
+                            "choices": [
+                                "100%",
+                                "75%",
+                                "50%",
+                                "25%",
+                                "0%"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "switch4-pass",
+                    "title": "Passes",
+                    "type": "RangeBox",
+                    "startingValue": 0,
+                    "jumpLength": 5
+                },
+                {
+                    "id": "switch4-defense",
+                    "title": "Played Defense",
+                    "type": "Radio",
+                    "choices": [
+                        "Yes",
+                        "No",
+                        "Sometimes"
                     ]
                 }
             ]
@@ -510,15 +677,6 @@
         {
             "title": "End",
             "questions": [
-                {
-                    "id": "end-shot",
-                    "title": "Shot to Hub during endgame",
-                    "type": "List",
-                    "choices": [
-                        "Yes",
-                        "No"
-                    ]
-                },
                 {
                     "type": "container",
                     "title": "Climb",

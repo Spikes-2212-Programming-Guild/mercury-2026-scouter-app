@@ -1,6 +1,9 @@
 const express = require("express");
+const compression = require("compression");
 
 const app = express();
+app.use(compression());
+
 const PORT = 8060;
 
 app.use(express.static("docs"));

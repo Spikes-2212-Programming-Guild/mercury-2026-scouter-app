@@ -1,28 +1,17 @@
-/*
-
-this class should include a submission queue
-
-1. it should try to send the forms every X minutes
-2. it should have an "add form" method
-3.
-
- */
-
-
 import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "../../Storage.js";
-import {SERVER_URL} from "../config/Constants.js";
+import {SERVER_URL} from "../../config/Constants.js";
 
 export class SubmissionManager {
 
     constructor() {
         this.submitting = false;
-        this.submissionQueue =
-            JSON.parse(getFromLocalStorage(LOCAL_STORAGE.SUBMISSION_QUEUE)) || [];
+        this.submissionQueue = JSON.parse(
+            getFromLocalStorage(LOCAL_STORAGE.SUBMISSION_QUEUE)) || [];
 
         setInterval(() => this.processQueue(), 1000 * 60);
     }
 
-    saveQueue() {
+    saveQueueToLocalStorage() {
 
         setToLocalStorage(
             LOCAL_STORAGE.SUBMISSION_QUEUE,
@@ -32,7 +21,7 @@ export class SubmissionManager {
 
     async addSubmission(submission) {
         this.submissionQueue.push(submission);
-        this.saveQueue();
+        this.saveQueueToLocalStorage();
         await this.processQueue();
     }
 
@@ -63,7 +52,7 @@ export class SubmissionManager {
                 }
 
                 this.submissionQueue.shift();
-                this.saveQueue();
+                this.saveQueueToLocalStorage();
                 console.log("Submitted successfully");
 
             } catch (error) {

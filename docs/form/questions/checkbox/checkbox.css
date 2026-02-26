@@ -1,0 +1,48 @@
+.CheckBox {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.CheckBox input {
+    appearance: none;
+    -webkit-appearance: none; /* disable default checkbox */
+
+    width: 1.5em;
+    height: 1.5em;
+
+    position: relative;
+
+    border-radius: var(--border-radius-medium);
+    border: var(--border-width-large) solid var(--color-bg-light);
+    background-color: var(--color-bg-light);
+
+    cursor: pointer;
+
+    transition:
+            background-color 100ms ease,
+            border-color 100ms ease;
+}
+
+.CheckBox input:checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.CheckBox input:checked::after {
+    content: "";
+    position: absolute;
+
+    width: 0.325em;
+    height: 0.75em;
+
+    border: solid white;
+    border-width: 0 0.2em 0.2em 0;
+
+    transform: rotate(45deg) scale(1);
+    opacity: 1;
+
+    left: 50%;
+    top: 50%;
+    translate: -50% -60%;
+}

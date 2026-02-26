@@ -1,6 +1,6 @@
 import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "../../../Storage.js";
-import {SERVER_URL} from "../Constants.js";
 import {navigateToForm} from "../../../Router.js";
+import {SERVER_URL} from "../../../config/Constants.js";
 
 export class ScoutingPage {
 
@@ -49,6 +49,11 @@ export class ScoutingPage {
         });
 
         container.append(title, versionTitle, updateFormButton, startButton, formIdInput);
+
+        this.isFetching = false;
+        // this.refreshInterval = setInterval(async () => {
+        //     await this.fetchForm();
+        // }, 5 * 60 * 1000);
     }
 
     /*
@@ -61,32 +66,41 @@ export class ScoutingPage {
      */
 
     async fetchForm() {
+        if (this.isFetching) return;
+        this.isFetching = true;
 
-        const formId = getFromLocalStorage(LOCAL_STORAGE.FORM_ID);
-        const formVersion = getFromLocalStorage(LOCAL_STORAGE.FORM_VERSION);
+        try {
+            const formId = getFromLocalStorage(LOCAL_STORAGE.FORM_ID);
+            const formVersion = getFromLocalStorage(LOCAL_STORAGE.FORM_VERSION);
 
-        if (!formId) {
-            alert("Form ID is required");
-            return;
+            if (!formId) {
+                alert("Form ID is required");
+                return;
+            }
+
+            const response = await fetch(`${SERVER_URL}/get-form/${formId}/${formVersion}`);
+
+            if (response.status === 304) {
+                alert("Form is already up to date");
+                return;
+            }
+
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+
+            const { form, version } = await response.json();
+
+            setToLocalStorage(LOCAL_STORAGE.FORM_DATA, form);
+            setToLocalStorage(LOCAL_STORAGE.FORM_VERSION, version);
+
+            alert("Successfully loaded new version");
+
+        } catch (e) {
+            console.error(e);
+            alert("Error loading new version");
+        } finally {
+            this.isFetching = false;
         }
-
-        const response = await fetch(`${SERVER_URL}/get-form/${formId}/${formVersion}`)
-        console.log(response)
-
-        if (response.status === 304) {
-            console.log("No changes");
-            return;
-        }
-
-        if (!response.ok) {
-            console.error(response.statusText);
-            return;
-        }
-
-        const { form, version } = await response.json();
-
-        setToLocalStorage(LOCAL_STORAGE.FORM_DATA, form);
-        setToLocalStorage(LOCAL_STORAGE.FORM_VERSION, version);
-        console.log(`Loaded form version ${version}`);
     }
 }

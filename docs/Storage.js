@@ -8,6 +8,7 @@ export const LOCAL_STORAGE = {
     PAGE_INDEX: 'pageIndex',
     CURRENT_APP: 'currentApp',
     SUBMISSION_QUEUE: 'submissionQueue',
+    LIFETIME_SUBMISSIONS: 'lifetimeSubmissions',
 };
 
 export function setToLocalStorage(key, value) {
