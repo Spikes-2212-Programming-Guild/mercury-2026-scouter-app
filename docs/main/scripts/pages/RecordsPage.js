@@ -1,6 +1,6 @@
 import {getFromLocalStorage, LOCAL_STORAGE} from "../../../Storage.js";
 
-export class RecordingsPage {
+export class RecordsPage {
 
     render(container) {
         this.submissionQueue = JSON.parse(

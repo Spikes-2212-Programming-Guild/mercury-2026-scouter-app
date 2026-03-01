@@ -34,14 +34,13 @@
     --color-secondary-text: hsl(220, 80%, 80%);
 }
 
-/* Earthy / nature inspired */
 :root[data-theme="forest"] {
     --color-primary: hsl(110, 35%, 30%);
     --color-secondary: hsl(139, 23%, 24%);
     --color-secondary-text: hsl(110, 45%, 70%);
 }
 
-:root[data-theme="light-blue"] {
+:root[data-theme="frozen"] {
     --color-primary: hsl(210, 41%, 58%);
     --color-secondary: hsl(210, 35%, 55%);
     --color-secondary-text: hsl(210, 100%, 90%);
@@ -54,7 +53,7 @@
 }
 
 :root[data-theme="sunset"] {
-    --color-primary: hsl(26, 60%, 45%);
+    --color-primary: hsl(26, 60%, 50%);
     --color-secondary: hsl(345, 45%, 35%);
     --color-secondary-text: hsl(347, 65%, 75%);
 }
@@ -69,4 +68,22 @@
     --color-primary: hsl(330, 45%, 55%);
     --color-secondary: hsl(215, 40%, 25%);
     --color-secondary-text: hsl(195, 100%, 80%);
+}
+
+:root[data-theme="luxury"] {
+    --color-primary: #A67A46;
+    --color-secondary: #3B3C40;
+    --color-secondary-text: #F2E2C4;
+}
+
+:root[data-theme="beach"] {
+    --color-primary: #4193A6;
+    --color-secondary: #3B3C40;
+    --color-secondary-text: #F2E6D0;
+}
+
+:root[data-theme="suit"] {
+    --color-primary: #C0392B;
+    --color-secondary: #3B3C40;
+    --color-secondary-text: #F2E2C4;
 }

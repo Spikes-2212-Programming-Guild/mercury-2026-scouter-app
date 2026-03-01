@@ -4,6 +4,12 @@
     overflow: hidden;
 }
 
+/*
+
+remove the crazy margins
+
+ */
+
 .CheckBox input {
     appearance: none;
     -webkit-appearance: none; /* disable default checkbox */
@@ -18,10 +24,6 @@
     background-color: var(--color-bg-light);
 
     cursor: pointer;
-
-    transition:
-            background-color 100ms ease,
-            border-color 100ms ease;
 }
 
 .CheckBox input:checked {
@@ -39,8 +41,7 @@
     border: solid white;
     border-width: 0 0.2em 0.2em 0;
 
-    transform: rotate(45deg) scale(1);
-    opacity: 1;
+    transform: rotate(45deg);
 
     left: 50%;
     top: 50%;

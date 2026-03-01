@@ -1,6 +1,6 @@
 import {AboutPage} from './pages/AboutPage.js';
-import {ScoutingPage} from './pages/ScoutingPage.js';
-import {RecordingsPage} from './pages/RecordingsPage.js';
+import {ScoutingPage} from './pages/scouting-page/ScoutingPage.js';
+import {RecordsPage} from './pages/RecordsPage.js';
 import {SettingsPage} from './pages/SettingsPage.js';
 import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "../../Storage.js";
 
@@ -10,7 +10,7 @@ export class MainApp {
         this.appContainer = appContainer;
         this.pages = {
             Scouting: new ScoutingPage(),
-            Recordings: new RecordingsPage(),
+            Records: new RecordsPage(),
             Settings: new SettingsPage(),
             About: new AboutPage(),
         };
@@ -24,12 +24,12 @@ export class MainApp {
     }
 
     renderNavigation() {
-        const container = document.createElement('div');
-        container.id = 'bottom-navigation';
-        this.appContainer.appendChild(container);
+        this.navContainer = document.createElement('div');
+        this.navContainer.id = 'top-navigation';
+        this.appContainer.appendChild(this.navContainer);
 
         for (const pageId of Object.keys(this.pages)) {
-            container.appendChild(this.renderNavButton(pageId));
+            this.navContainer.appendChild(this.renderNavButton(pageId));
         }
     }
 
@@ -57,8 +57,13 @@ export class MainApp {
 
     displayPage(pageId) {
         setToLocalStorage(LOCAL_STORAGE.PAGE_ID, pageId);
+
         for (const page of this.pageContainer.children) {
             page.hidden = page.id !== pageId;
+        }
+
+        for (const button of this.navContainer.children) {
+            button.classList.toggle('active', button.textContent === pageId);
         }
     }
 }

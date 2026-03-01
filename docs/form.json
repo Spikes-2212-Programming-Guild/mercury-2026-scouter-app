@@ -317,7 +317,7 @@
                     "id": "match",
                     "title": "Match Number",
                     "type": "ScoreBox",
-                    "defaultValue": ""
+                    "defaultValue": null
                 }
             ]
         },
@@ -445,37 +445,6 @@
                 },
                 {
                     "type": "container",
-                    "title": "Got fuel from",
-                    "align": "grid",
-                    "questions": [
-                        {
-                            "id": "teleop-picked-from-depot",
-                            "title": "Depot",
-                            "align": "horizontal",
-                            "type": "CheckBox"
-                        },
-                        {
-                            "id": "teleop-picked-from-outpost",
-                            "title": "Outpost",
-                            "align": "horizontal",
-                            "type": "CheckBox"
-                        },
-                        {
-                            "id": "teleop-picked-from-neutral",
-                            "title": "Neutral",
-                            "align": "horizontal",
-                            "type": "CheckBox"
-                        },
-                        {
-                            "id": "teleop-picked-from-floor",
-                            "title": "Floor",
-                            "align": "horizontal",
-                            "type": "CheckBox"
-                        }
-                    ]
-                },
-                {
-                    "type": "container",
                     "title": "While inactive",
                     "align": "grid",
                     "questions": [
@@ -524,17 +493,8 @@
                     "title": "Climb",
                     "questions": [
                         {
-                            "id": "end-climb-duration",
-                            "title": "Did it take longer than 15 seconds to climb?",
-                            "type": "List",
-                            "choices": [
-                                "Yes",
-                                "No"
-                            ]
-                        },
-                        {
                             "id": "end-climb-position",
-                            "title": "Climb Position",
+                            "title": "Position",
                             "type": "List",
                             "choices": [
                                 "Didn't try",
@@ -545,7 +505,7 @@
                         },
                         {
                             "id": "end-climb-level",
-                            "title": "Climb Level",
+                            "title": "Level",
                             "type": "List",
                             "choices": [
                                 "Didn't try",
@@ -562,53 +522,25 @@
             "title": "Post",
             "questions": [
                 {
-                    "id": "post-pass-strategy",
-                    "title": "Where did the robot pass from?",
+                    "id": "post-affected-by-defense",
+                    "title": "Was the robot affected by defense?",
                     "type": "List",
                     "choices": [
-                        "Didn't pass",
-                        "Both",
-                        "Natural zone",
-                        "Other alliance"
+                        "Yes",
+                        "No"
                     ]
                 },
                 {
-                    "id": "post-shoot-position",
-                    "title": "Where did the robot shoot from?",
-                    "type": "List",
-                    "choices": [
-                        "Close",
-                        "Far",
-                        "Both"
-                    ]
-                },
-                {
-                    "id": "post-trench",
-                    "title": "Trench",
-                    "type": "List",
-                    "choices": [
-                        "Didn't try",
-                        "Went through"
-                    ]
-                },
-                {
-                    "id": "post-bump",
-                    "title": "Bump",
-                    "type": "List",
-                    "choices": [
-                        "Didn't try",
-                        "Went through",
-                        "Failed"
-                    ]
-                },
-                {
-                    "id": "post-status",
+                    "id": "post-robot-status",
                     "title": "Robot Status",
                     "type": "List",
                     "choices": [
-                        "Fully Functional",
-                        "Has Issues",
-                        "Non-Functional"
+                        "Working Normally",
+                        "Broken",
+                        "Partially Broken",
+                        "Struggling",
+                        "No Connection",
+                        "Unknown"
                     ]
                 },
                 {

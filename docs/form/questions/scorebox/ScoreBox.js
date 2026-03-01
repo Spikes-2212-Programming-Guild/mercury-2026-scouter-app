@@ -2,19 +2,18 @@ import {getFromLocalStorage, removeFromLocalStorage, setToLocalStorage} from "..
 
 const DEFAULT_MIN_VALUE = 0;
 const DEFAULT_MAX_VALUE = 100;
-const DEFAULT_START_VALUE = 0;
 
 export function renderScoreBox(jsonQuestionData, questionContainer) {
 
     const MIN_VALUE = jsonQuestionData.minValue ?? DEFAULT_MIN_VALUE;
     const MAX_VALUE = jsonQuestionData.maxValue ?? DEFAULT_MAX_VALUE;
-    const DEFAULT_VALUE = jsonQuestionData.defaultValue ?? DEFAULT_START_VALUE;
+    const DEFAULT_VALUE = jsonQuestionData.defaultValue;
 
     let input = document.getElementById(jsonQuestionData.id);
     if (input) {
         // reset to default if already exists
-        input.value = input.defaultValue;
-        setToLocalStorage(jsonQuestionData.id, input.defaultValue);
+        input.value = DEFAULT_VALUE;
+        setToLocalStorage(jsonQuestionData.id, DEFAULT_VALUE);
         return;
     }
 

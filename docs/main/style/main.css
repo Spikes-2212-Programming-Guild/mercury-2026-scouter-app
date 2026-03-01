@@ -1,144 +1,133 @@
-/* ---------- Base ---------- */
+@import "../../form/style/constants.css";
+@import "../../config/colorThemes.css";
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    border: none;
 }
 
-html, body {
+body {
     height: 100%;
     font-family: system-ui, Arial, sans-serif;
     background: #1f232a;
     color: #f0f0f0;
 }
 
-/* ---------- App Layout ---------- */
-#root {
-    height: 100%;
-}
-
 #main-app {
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
-/* ---------- Page Container ---------- */
 #page-container {
     flex: 1;
-    padding: 16px;
+    padding: 1em;
     overflow-y: auto;
 }
 
-#page-container > div[hidden] {
-    display: none;
-}
+/*h1 {*/
+/*    font-size: 1.8rem;*/
+/*    margin-bottom: 0.4em;*/
+/*}*/
 
-/* ---------- Typography ---------- */
-h1 {
-    font-size: 1.8rem;
-    margin-bottom: 0.4em;
-}
+/*h2 {*/
+/*    font-size: 1.2rem;*/
+/*    color: #cfcfcf;*/
+/*    margin-bottom: 1em;*/
+/*}*/
 
-h2 {
-    font-size: 1.2rem;
-    color: #cfcfcf;
-    margin-bottom: 1em;
-}
+/*p, label {*/
+/*    font-size: 1rem;*/
+/*    color: #cfcfcf;*/
+/*}*/
 
-p, label {
-    font-size: 1rem;
-    color: #cfcfcf;
-}
+/*button {*/
+/*    background: #2d6cdf;*/
+/*    color: #ffffff;*/
+/*    border: none;*/
+/*    border-radius: 6px;*/
+/*    padding: 8px 12px;*/
+/*    font-size: 1rem;*/
+/*    cursor: pointer;*/
+/*}*/
 
-/* ---------- Buttons ---------- */
-button {
-    background: #2d6cdf;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-size: 1rem;
-    cursor: pointer;
-}
+/*button:hover {*/
+/*    background: #356fe6;*/
+/*}*/
 
-button:hover {
-    background: #356fe6;
-}
+/*input[type="text"] {*/
+/*    width: 100%;*/
+/*    padding: 8px;*/
+/*    margin-top: 8px;*/
+/*    font-size: 1rem;*/
+/*    background: #2a2f38;*/
+/*    color: #ffffff;*/
+/*    border: 1px solid #444;*/
+/*    border-radius: 4px;*/
+/*}*/
 
-/* ---------- Inputs ---------- */
-input[type="text"] {
+/*input::placeholder {*/
+/*    color: #9aa0a6;*/
+/*}*/
+
+/*#Scouting {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 10px;*/
+/*}*/
+
+/*#Settings {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 12px;*/
+/*}*/
+
+/*.settings-component {*/
+/*    background: #262b33;*/
+/*    padding: 12px;*/
+/*    border-radius: 6px;*/
+/*}*/
+
+/*#About {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 10px;*/
+/*}*/
+
+/*#About a {*/
+/*    color: #7aa2ff;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*#About a:hover {*/
+/*    text-decoration: underline;*/
+/*}*/
+
+#top-navigation {
+    display: flex;
+    position: sticky;
+    z-index: 999;
+
+    top: 0;
+    left: 0;
+
     width: 100%;
-    padding: 8px;
-    margin-top: 8px;
-    font-size: 1rem;
-    background: #2a2f38;
-    color: #ffffff;
-    border: 1px solid #444;
-    border-radius: 4px;
+    height: 8vh;
+    box-shadow: var(--shadow-medium) var(--shadow-color-gray);
 }
 
-input::placeholder {
-    color: #9aa0a6;
-}
-
-/* ---------- Scouting ---------- */
-#Scouting {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* ---------- Settings ---------- */
-#Settings {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.settings-component {
-    background: #262b33;
-    padding: 12px;
-    border-radius: 6px;
-}
-
-/* ---------- About ---------- */
-#About {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#About a {
-    color: #7aa2ff;
-    text-decoration: none;
-}
-
-#About a:hover {
-    text-decoration: underline;
-}
-
-/* ---------- Bottom Navigation ---------- */
-#bottom-navigation {
-    display: flex;
-    gap: 6px;
-    padding: 8px;
-    background: #262b33;
-    border-top: 1px solid #3a3f47;
-}
-
-#bottom-navigation button {
+#top-navigation > button {
     flex: 1;
-    background: transparent;
-    color: #e0e0e0;
+
+    font-size: var(--font-size-small);
+    background-color: var(--color-primary);
+    color: var(--color-text-muted);
 }
 
-#bottom-navigation button:hover {
-    background: #333944;
-}
-
-/* Optional active state */
-#bottom-navigation button.active {
-    background: #2d6cdf;
-    color: white;
+#top-navigation > button.active {
+    font-weight: bold;
+    color: var(--color-secondary-text);
+    background-color: color-mix(in srgb, var(--color-primary) 90%, black);
+    border-bottom: 3px solid var(--color-border);
 }

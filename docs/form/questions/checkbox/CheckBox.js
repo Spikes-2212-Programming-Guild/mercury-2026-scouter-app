@@ -5,6 +5,7 @@ export function renderCheckBox(jsonQuestionData, questionContainer) {
     if (checkbox) {
         // reset to default if already exists
         checkbox.value = false;
+        setToLocalStorage(jsonQuestionData.id, JSON.stringify(checkbox.checked));
         return;
     }
 

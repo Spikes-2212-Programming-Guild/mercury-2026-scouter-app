@@ -1,7 +1,6 @@
 import {FormApp} from "./form/scripts/App.js";
 import {MainApp} from "./main/scripts/Main.js";
-import formData from './form.json' with {type: 'json'}
-import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "./Storage.js";
+import {LOCAL_STORAGE, setToLocalStorage} from "./Storage.js";
 
 const formApp = new FormApp(document.body)
 const mainApp = new MainApp(document.body)
@@ -26,11 +25,10 @@ export function navigateToMain() {
 }
 
 const currentApp = getFromLocalStorage(LOCAL_STORAGE.CURRENT_APP)
+// setToLocalStorage(LOCAL_STORAGE.FORM_DATA, JSON.stringify(formData));
 
-setToLocalStorage(LOCAL_STORAGE.FORM_DATA, JSON.stringify(formData));
-
-if (currentApp === 'main') {
-    navigateToMain()
-} else {
+if (currentApp === 'form') {
     navigateToForm()
+} else {
+    navigateToMain()
 }

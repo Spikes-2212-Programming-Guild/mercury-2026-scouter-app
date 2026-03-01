@@ -35,7 +35,7 @@ body, .page {
 }
 
 /* ===== Clear All Button ===== */
-#clear-all-button, #return-button {
+#clear-all-button, #back-button {
     margin-bottom: 1em;
     font-weight: bold;
     font-size: var(--font-size-medium);

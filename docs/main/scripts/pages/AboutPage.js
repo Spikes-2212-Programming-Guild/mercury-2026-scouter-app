@@ -7,9 +7,7 @@ export class AboutPage {
             <label> Developed By: Itay Zadok </label>
         
             <div>
-              <a href="">Home</a> |
-              <a href="">Contact</a> |
-              <a href="https://github.com/">GitHub</a>
+              <a href="https://github.com/Spikes-2212-Programming-Guild/mercury-2026-scouter-app">GitHub</a>
             </div>
           `;
     }

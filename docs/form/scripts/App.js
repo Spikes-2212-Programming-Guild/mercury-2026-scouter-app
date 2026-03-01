@@ -18,6 +18,7 @@ import {renderInputBox} from "../questions/inputbox/InputBox.js";
 import {navigateToMain} from "../../Router.js";
 import {SubmissionManager} from "./SubmissionManager.js";
 import {renderCheckBox} from "../questions/checkbox/CheckBox.js";
+import {SettingsPage} from "../../main/scripts/pages/SettingsPage.js";
 
 const questionRenderers = {
     'InputBox': renderInputBox,
@@ -58,7 +59,7 @@ export class FormApp {
         this.pageQuestions = this.indexAllPages()
         this.renderTopNavigationBar()
         this.renderAllPages();
-        this.renderReturnButton();
+        this.renderBackButton();
         this.renderClearAllButton();
         this.renderBottomNavigationBar()
 
@@ -69,7 +70,8 @@ export class FormApp {
     }
 
     setColorTheme() {
-        document.documentElement.setAttribute('data-theme', "teal");
+        const settingPage = new SettingsPage()
+        settingPage.setSavedColorTheme()
     }
 
     traverseRecursively(node, visit) {
@@ -210,15 +212,15 @@ export class FormApp {
         return container;
     }
 
-    renderReturnButton() {
-        const returnButton = document.createElement('button');
-        returnButton.textContent = 'Return to main menu';
-        returnButton.id = 'return-button';
-        returnButton.onclick = () => {
-            if (!confirm("Confirm Return")) return;
+    renderBackButton() {
+        const backButton = document.createElement('button');
+        backButton.textContent = 'Back to main menu';
+        backButton.id = 'back-button';
+        backButton.onclick = () => {
+            // if (!confirm("Confirm Return")) return;
             navigateToMain()
         }
-        this.appContainer.appendChild(returnButton);
+        this.appContainer.appendChild(backButton);
     }
 
     renderClearAllButton() {
@@ -295,7 +297,7 @@ export class FormApp {
         // if all answers are invalid
         if (!answers) return
 
-        if (!confirm("Confirm Submit")) return;
+        // if (!confirm("Confirm Submit")) return;
 
         this.clearAllQuestions();
         this.displayPage(0);
@@ -318,7 +320,7 @@ export class FormApp {
 
                 console.log(`${questionId}: ${value}`)
 
-                if (value === null || value === '' || value === undefined) {
+                if (value === null || value === undefined) {
                     this.displayPage(pageIndex);
                     question.classList.toggle("invalid")
                     question.scrollIntoView({block: 'center', inline: 'nearest'});

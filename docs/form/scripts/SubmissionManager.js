@@ -8,7 +8,13 @@ export class SubmissionManager {
         this.submissionQueue = JSON.parse(
             getFromLocalStorage(LOCAL_STORAGE.SUBMISSION_QUEUE)) || [];
 
-        setInterval(() => this.processQueue(), 1000 * 60);
+        setInterval(() => this.processQueue(), 1000 * 60 * 5);
+    }
+
+    async addSubmission(submission) {
+        this.submissionQueue.push(submission);
+        this.saveQueueToLocalStorage();
+        await this.processQueue();
     }
 
     saveQueueToLocalStorage() {
@@ -17,12 +23,6 @@ export class SubmissionManager {
             LOCAL_STORAGE.SUBMISSION_QUEUE,
             JSON.stringify(this.submissionQueue)
         );
-    }
-
-    async addSubmission(submission) {
-        this.submissionQueue.push(submission);
-        this.saveQueueToLocalStorage();
-        await this.processQueue();
     }
 
     async processQueue() {

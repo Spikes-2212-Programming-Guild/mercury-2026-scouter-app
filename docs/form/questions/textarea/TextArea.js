@@ -5,6 +5,7 @@ export function renderTextArea(jsonQuestionData, questionContainer) {
     if (textarea) {
         // reset to default if already exists
         textarea.value = '';
+        setToLocalStorage(jsonQuestionData.id, textarea.value)
         return;
     }
 
