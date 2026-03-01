@@ -48,7 +48,9 @@ export class SettingsPage {
     }
 
     setColorTheme(colorIndex) {
-        if (colorIndex < 0 || colorIndex >= COLOR_THEMES.length) return;
+        if (colorIndex < 0 || colorIndex >= COLOR_THEMES.length || !colorIndex) {
+            colorIndex = 0;
+        }
         const color = COLOR_THEMES[colorIndex]
         document.documentElement.setAttribute('data-theme', color);
         setToLocalStorage(LOCAL_STORAGE.COLOR_THEME_INDEX, colorIndex)
