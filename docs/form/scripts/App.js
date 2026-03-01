@@ -49,11 +49,20 @@ export class FormApp {
 
     render() {
 
-        const formData = getFromLocalStorage(LOCAL_STORAGE.FORM_DATA);
+        /*
 
-        if (!formData) return;
+        make it use FormService (make it singleton)
 
-        this.form = JSON.parse(formData)
+         */
+        const forms = getFromLocalStorage(LOCAL_STORAGE.FORMS);
+        const formId = getFromLocalStorage(LOCAL_STORAGE.FORM_ID)
+
+        if (!forms || !formId || !forms[formId]) {
+            navigateToMain()
+        }
+
+        this.form = JSON.parse(forms[formId].form)
+
         this.submissionManager = new SubmissionManager()
 
         this.pageQuestions = this.indexAllPages()

@@ -1,6 +1,6 @@
 import {FormApp} from "./form/scripts/App.js";
 import {MainApp} from "./main/scripts/Main.js";
-import {clearLocalStorage, getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "./Storage.js";
+import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "./Storage.js";
 
 const formApp = new FormApp(document.body)
 const mainApp = new MainApp(document.body)
@@ -26,8 +26,6 @@ export function navigateToMain() {
 
 const currentApp = getFromLocalStorage(LOCAL_STORAGE.CURRENT_APP)
 // setToLocalStorage(LOCAL_STORAGE.FORM_DATA, JSON.stringify(formData));
-
-clearLocalStorage()
 
 if (currentApp === 'form') {
     navigateToForm()

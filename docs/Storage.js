@@ -3,7 +3,6 @@ const APP_ID = "qp"
 export const LOCAL_STORAGE = {
     FORMS: 'forms',
     FORM_ID: 'formId',
-    FORM_DATA: 'formData',
     FORM_VERSION: 'formVersion',
     PAGE_ID: 'pageId',
     PAGE_INDEX: 'pageIndex',
