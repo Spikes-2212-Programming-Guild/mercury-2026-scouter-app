@@ -1,5 +1,9 @@
 const APP_ID = "qp"
 
+/*
+ probably remove the app id
+ */
+
 export const LOCAL_STORAGE = {
     FORMS: 'forms',
     FORM_ID: 'formId',
@@ -18,7 +22,13 @@ export function setToLocalStorage(key, value) {
 
 export function getFromLocalStorage(key) {
     const value = localStorage.getItem(APP_ID + key);
-    return value ? JSON.parse(value) : null;
+    if (!value) return null;
+
+    try {
+        return JSON.parse(value);
+    } catch {
+        return null;
+    }
 }
 
 export function removeFromLocalStorage(key) {
