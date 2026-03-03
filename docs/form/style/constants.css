@@ -2,6 +2,7 @@
 :root {
     --color-bg: hsl(222, 18%, 17%);
     --color-bg-light: hsl(222, 18%, 22%);
+    --color-bg-dark: hsl(222, 18%, 14%);
     --color-bg-hover: hsl(222, 18%, 28%);
 
     --color-text: hsl(0, 0%, 92%);

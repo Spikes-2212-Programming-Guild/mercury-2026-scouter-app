@@ -18,7 +18,7 @@ import {renderInputBox} from "../questions/inputbox/InputBox.js";
 import {navigateToMain} from "../../Router.js";
 import {SubmissionManager} from "./SubmissionManager.js";
 import {renderCheckBox} from "../questions/checkbox/CheckBox.js";
-import {SettingsPage} from "../../main/scripts/pages/SettingsPage.js";
+import {SettingsPage} from "../../main/pages/SettingsPage.js";
 
 const questionRenderers = {
     'InputBox': renderInputBox,
@@ -54,8 +54,8 @@ export class FormApp {
         make it use FormService (make it singleton)
 
          */
-        const forms = getFromLocalStorage(LOCAL_STORAGE.FORMS);
-        const formId = getFromLocalStorage(LOCAL_STORAGE.FORM_ID)
+        const forms = getFromLocalStorage(LOCAL_STORAGE.SAVED_FORMS);
+        const formId = getFromLocalStorage(LOCAL_STORAGE.CURRENT_FORM_ID)
 
         if (!forms || !formId || !forms[formId]) {
             navigateToMain()
@@ -68,7 +68,7 @@ export class FormApp {
         this.pageQuestions = this.indexAllPages()
         this.renderTopNavigationBar()
         this.renderAllPages();
-        this.renderBackButton();
+        this.renderExitButton();
         this.renderClearAllButton();
         this.renderBottomNavigationBar()
 
@@ -221,15 +221,15 @@ export class FormApp {
         return container;
     }
 
-    renderBackButton() {
-        const backButton = document.createElement('button');
-        backButton.textContent = 'Back to main menu';
-        backButton.id = 'back-button';
-        backButton.onclick = () => {
+    renderExitButton() {
+        const exitButton = document.createElement('button');
+        exitButton.textContent = 'Save & Exit';
+        exitButton.id = 'exit-button';
+        exitButton.onclick = () => {
             // if (!confirm("Confirm Return")) return;
             navigateToMain()
         }
-        this.appContainer.appendChild(backButton);
+        this.appContainer.appendChild(exitButton);
     }
 
     renderClearAllButton() {
@@ -363,13 +363,18 @@ export class FormApp {
     setUpSwipeListeners() {
         let startX = 0, startY = 0;
 
-        document.addEventListener("touchstart", e => {
+        if (this._touchStartHandler) {
+            document.removeEventListener("touchstart", this._touchStartHandler);
+            document.removeEventListener("touchend", this._touchEndHandler);
+        }
+
+        this._touchStartHandler = e => {
             const t = e.touches[0];
             startX = t.clientX;
             startY = t.clientY;
-        });
+        };
 
-        document.addEventListener("touchend", e => {
+        this._touchEndHandler = e => {
             const t = e.changedTouches[0];
             const endX = t.clientX;
             const endY = t.clientY;
@@ -387,6 +392,9 @@ export class FormApp {
             } else if (diffX < -screenWidth * SWIPE_HORIZONTAL_THRESHOLD) {
                 this.nextPage();
             }
-        });
+        };
+
+        document.addEventListener("touchstart", this._touchStartHandler);
+        document.addEventListener("touchend", this._touchEndHandler);
     }
 }

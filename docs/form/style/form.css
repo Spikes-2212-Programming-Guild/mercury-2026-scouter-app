@@ -5,10 +5,10 @@
 @import "../questions/textarea/textarea.css";
 @import "../questions/radio/radio.css";
 @import "../questions/scorebox/scorebox.css";
-@import "../questions/rangebox/rangeBox.css";
+@import "../questions/rangebox/rangebox.css";
 @import "../questions/checkbox/checkbox.css";
-@import "bottomNavigation.css";
-@import "topNavigation.css";
+@import "bottom-navigation.css";
+@import "top-navigation.css";
 
 * {
     border: none;
@@ -35,7 +35,7 @@ body, .page {
 }
 
 /* ===== Clear All Button ===== */
-#clear-all-button, #back-button {
+#clear-all-button, #exit-button {
     margin-bottom: 1em;
     font-weight: bold;
     font-size: var(--font-size-medium);

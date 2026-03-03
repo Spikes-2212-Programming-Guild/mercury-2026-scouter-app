@@ -1,4 +1,4 @@
-import {getFromLocalStorage, LOCAL_STORAGE} from "../../../Storage.js";
+import {getFromLocalStorage, LOCAL_STORAGE} from "../../Storage.js";
 
 export class RecordsPage {
 

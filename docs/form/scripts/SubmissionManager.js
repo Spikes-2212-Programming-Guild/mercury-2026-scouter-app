@@ -28,8 +28,8 @@ export class SubmissionManager {
     async processQueue() {
         if (this.submitting) return;
         this.submitting = true;
-        const form_id = getFromLocalStorage(LOCAL_STORAGE.FORM_ID)
-        const form_version = getFromLocalStorage(LOCAL_STORAGE.FORM_VERSION)
+        const form_id = getFromLocalStorage(LOCAL_STORAGE.CURRENT_FORM_ID)
+        const form_version = getFromLocalStorage(LOCAL_STORAGE.CURRENT_FORM_VERSION)
 
         while (this.submissionQueue.length > 0) {
             const submission = this.submissionQueue[0];

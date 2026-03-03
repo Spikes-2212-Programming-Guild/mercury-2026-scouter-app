@@ -1,4 +1,4 @@
-import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "../../../Storage.js";
+import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "../../Storage.js";
 
 const COLOR_THEMES = [
     "purple", "green", "forest", "orange",
@@ -10,7 +10,6 @@ const COLOR_THEMES = [
 export class SettingsPage {
 
     render(container) {
-
         container.append(this.renderThemeChooser())
     }
 
