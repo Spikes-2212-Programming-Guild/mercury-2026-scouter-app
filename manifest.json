@@ -1,0 +1,10 @@
+{
+    "name": "Mercury2026",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/config/favicon.svg"
+        }
+    ]
+}
