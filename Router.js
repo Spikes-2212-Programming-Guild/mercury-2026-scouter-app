@@ -4,6 +4,7 @@ import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "./Storage.j
 
 // clearLocalStorage()
 
+
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./service-worker.js");
 }
