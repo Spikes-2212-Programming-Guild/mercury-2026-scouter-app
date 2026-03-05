@@ -22,8 +22,8 @@
 }
 
 input[type="radio"]:checked + label {
-    color: var(--color-secondary-text);
-    background-color: var(--color-secondary);
+    color: var(--color-text-secondary);
+    background-color: var(--color-primary);
     border-radius: 0.5em;
 }
 

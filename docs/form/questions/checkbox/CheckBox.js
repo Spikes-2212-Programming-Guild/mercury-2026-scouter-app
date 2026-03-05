@@ -1,27 +1,30 @@
-import {getFromLocalStorage, setToLocalStorage} from "../../../Storage.js";
+import {getFromLocalStorage, isInLocalStorage, setToLocalStorage} from "../../../Storage.js";
 
 export function renderCheckBox(jsonQuestionData, questionContainer) {
-    let checkbox = document.getElementById(jsonQuestionData.id);
+    const id = jsonQuestionData.id;
+    let checkbox = document.getElementById(id);
     if (checkbox) {
-        // reset to default if already exists
-        checkbox.value = false;
-        setToLocalStorage(jsonQuestionData.id, JSON.stringify(checkbox.checked));
+
+        checkbox.checked = false;
+        setToLocalStorage(id, checkbox.checked);
+
+        checkbox.classList.remove('invalid');
         return;
     }
 
     checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.id = jsonQuestionData.id;
+    checkbox.id = id;
 
-    try {
-        checkbox.checked = JSON.parse(getFromLocalStorage(jsonQuestionData.id) ?? 'false');
-    } catch (e) {
+    if (isInLocalStorage(id)) {
+        checkbox.checked = getFromLocalStorage(id)
+    } else {
         checkbox.checked = false;
     }
+    setToLocalStorage(id, checkbox.checked);
 
-    setToLocalStorage(jsonQuestionData.id, JSON.stringify(checkbox.checked));
     checkbox.onchange = () => {
-        setToLocalStorage(jsonQuestionData.id, JSON.stringify(checkbox.checked));
+        setToLocalStorage(id, checkbox.checked);
     };
     questionContainer.appendChild(checkbox);
 }

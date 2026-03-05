@@ -5,7 +5,8 @@
             "questions": [
                 {
                     "id": "scouter-name",
-                    "title": "Scouter Name",
+                    "title": "Name",
+                    "align": "horizontal",
                     "type": "InputBox"
                 },
                 {
@@ -15,12 +16,14 @@
                         "Practice",
                         "Qualifications"
                     ],
+                    "align": "horizontal",
                     "type": "List"
                 },
                 {
                     "id": "alliance",
                     "title": "Alliance",
                     "type": "List",
+                    "align": "horizontal",
                     "choices": [
                         "Red",
                         "Blue"
@@ -29,6 +32,7 @@
                 {
                     "id": "team-number",
                     "title": "Team Number",
+                    "align": "horizontal",
                     "choices": [
                         {
                             "value": 1574,
@@ -316,7 +320,9 @@
                 {
                     "id": "match-number",
                     "title": "Match Number",
-                    "type": "ScoreBox"
+                    "align": "horizontal",
+                    "type": "ScoreBox",
+                    "defaultValue": null
                 }
             ]
         },
@@ -325,36 +331,35 @@
             "questions": [
                 {
                     "type": "container",
-                    "title": "Fuel",
+                    "title": "Hub",
                     "questions": [
                         {
                             "id": "auto-hub-score",
                             "title": "Scores",
-                            "type": "TripleScoreBox",
-                            "skippable": true
+                            "type": "TripleScoreBox"
                         },
                         {
-                            "id": "auto-pass",
-                            "title": "Passes",
-                            "type": "TripleScoreBox",
-                            "skippable": true
+                            "id": "auto-hub-accuracy",
+                            "title": "Accuracy",
+                            "type": "List",
+                            "choices": [
+                                "Didn't miss",
+                                "Missed a bit",
+                                "Missed a lot",
+                                "Missed everything"
+                            ]
                         }
                     ]
                 },
                 {
-                    "id": "auto-accuracy",
-                    "title": "Accuracy",
-                    "type": "List",
-                    "choices": [
-                        "Didn't miss (100-90%)",
-                        "Missed a bit (90-80%)",
-                        "Missed a lot (80-60%)",
-                        "Missed most (60-0%)"
-                    ]
+                    "id": "auto-pass",
+                    "title": "Passes",
+                    "type": "TripleScoreBox"
                 },
                 {
                     "id": "auto-climb",
                     "title": "Climb",
+                    "align": "horizontal",
                     "type": "List",
                     "choices": [
                         "Didn't try",
@@ -402,32 +407,30 @@
             "questions": [
                 {
                     "type": "container",
-                    "title": "Fuel",
+                    "title": "Hub",
                     "questions": [
                         {
                             "id": "teleop-hub-score",
                             "title": "Scores",
-                            "type": "TripleScoreBox",
-                            "skippable": true
+                            "type": "TripleScoreBox"
                         },
                         {
-                            "id": "teleop-pass",
-                            "title": "Passes",
-                            "type": "TripleScoreBox",
-                            "skippable": true
+                            "id": "teleop-hub-accuracy",
+                            "title": "Accuracy",
+                            "type": "List",
+                            "choices": [
+                                "Didn't miss",
+                                "Missed a bit",
+                                "Missed a lot",
+                                "Missed everything"
+                            ]
                         }
                     ]
                 },
                 {
-                    "id": "teleop-accuracy",
-                    "title": "Accuracy",
-                    "type": "List",
-                    "choices": [
-                        "Didn't miss (100-90%)",
-                        "Missed a bit (90-80%)",
-                        "Missed a lot (80-60%)",
-                        "Missed most (60-0%)"
-                    ]
+                    "id": "teleop-pass",
+                    "title": "Passes",
+                    "type": "TripleScoreBox"
                 },
                 {
                     "id": "teleop-inactive",
@@ -439,8 +442,7 @@
                         "passed",
                         "blocked bump or trench"
                     ],
-                    "multiple": true,
-                    "skippable": true
+                    "multiple": true
                 }
             ]
         },
@@ -509,6 +511,15 @@
                         "Struggling",
                         "No Connection",
                         "Unknown"
+                    ]
+                },
+                {
+                    "id": "post-accuracy",
+                    "title": "Are you very unsure of your answers?",
+                    "type": "List",
+                    "choices": [
+                        "Yes",
+                        "No"
                     ]
                 },
                 {

@@ -1,15 +1,9 @@
-const APP_ID = "qp"
-
-/*
- probably remove the app id
- */
-
 export const LOCAL_STORAGE = {
     SAVED_FORMS: 'savedForms',
     CURRENT_FORM_ID: 'currentFormId',
     CURRENT_FORM_VERSION: 'currentFormVersion',
-    PAGE_ID: 'pageId',
-    PAGE_INDEX: 'pageIndex',
+    CURRENT_FORM_PAGE_INDEX: 'currentFormPageIndex',
+    CURRENT_MAIN_PAGE_INDEX: 'currentMainPageIndex',
     CURRENT_APP: 'currentApp',
     SUBMISSION_QUEUE: 'submissionQueue',
     LIFETIME_SUBMISSIONS: 'lifetimeSubmissions',
@@ -17,22 +11,27 @@ export const LOCAL_STORAGE = {
 };
 
 export function setToLocalStorage(key, value) {
-    localStorage.setItem(APP_ID + key, JSON.stringify(value));
+    localStorage.setItem(key, JSON.stringify(value));
 }
 
 export function getFromLocalStorage(key) {
-    const value = localStorage.getItem(APP_ID + key);
+    const value = localStorage.getItem(key);
     if (!value) return null;
 
     try {
         return JSON.parse(value);
     } catch {
+        localStorage.removeItem(key)
         return null;
     }
 }
 
+export function isInLocalStorage(key) {
+    return localStorage.getItem(key);
+}
+
 export function removeFromLocalStorage(key) {
-    return localStorage.removeItem(APP_ID + key);
+    return localStorage.removeItem(key);
 }
 
 export function clearLocalStorage() {

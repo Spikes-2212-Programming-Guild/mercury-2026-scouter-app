@@ -1,58 +1,5 @@
-#Scouting {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-}
-
-#Scouting > button {
-
-    font-size: var(--font-size-small);
-    color: var(--color-secondary-text);
-
-    background-color: var(--color-bg-light);
-    border: 3px solid var(--color-bg-light);
-    border-radius: var(--border-radius-medium);
-
-    padding: 0.2em;
-
-    cursor: pointer;
-}
-
-#name-container, #version-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1em;
-    width: 100%;
-}
-
-#version-container {
+#version-field {
     margin-top: 2em;
-}
-
-#name-label, #version-label {
-    font-size: var(--font-size-small);
-    color: var(--color-text);
-    white-space: nowrap;
-}
-
-#version-span {
-    font-size: var(--font-size-small);
-}
-
-#name-input {
-    flex: 1;
-    min-width: 0;
-
-    font-size: var(--font-size-small);
-    padding: 0.4em;
-    background-color: var(--color-bg-dark);
-
-    border-radius: var(--border-radius-medium);
-    border: 3px solid var(--color-bg-hover);
-
-    color: var(--color-text);
-    box-shadow: 0 2px 6px var(--shadow-color-gray);
 }
 
 #name-input::placeholder {

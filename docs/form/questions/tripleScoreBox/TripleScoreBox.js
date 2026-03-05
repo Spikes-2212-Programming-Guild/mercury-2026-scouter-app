@@ -1,6 +1,6 @@
 import {getFromLocalStorage, isInLocalStorage, removeFromLocalStorage, setToLocalStorage} from "../../../Storage.js";
 
-export function renderScoreBox(jsonQuestionData, questionContainer) {
+export function renderTripleScoreBox(jsonQuestionData, questionContainer) {
 
     const MIN_VALUE = jsonQuestionData.minValue || 0;
     const MAX_VALUE = jsonQuestionData.maxValue || 100;
@@ -45,35 +45,53 @@ export function renderScoreBox(jsonQuestionData, questionContainer) {
 
     const saveValue = () => {
         if (input.value < Number(input.min) || input.value > Number(input.max) ||
-            input.value === "" || input.value === null || !Number.isInteger(Number(input.value))) {
-
+            input.value === "" || !Number.isInteger(Number(input.value))) {
             input.classList.add('invalid');
-            removeFromLocalStorage(jsonQuestionData.id);
+            removeFromLocalStorage(id);
         } else {
-
             input.classList.remove('invalid');
-            setToLocalStorage(jsonQuestionData.id, input.value);
+            setToLocalStorage(id, input.value);
         }
     };
     input.oninput = saveValue;
 
-    const decButton = document.createElement('button');
-    decButton.textContent = '−';
-    decButton.onclick = () => {
-        input.stepDown();
-        saveValue();
-    };
-
-    const incButton = document.createElement('button');
-    incButton.textContent = '+';
-    incButton.onclick = () => {
-        input.stepUp();
+    const decButton10 = document.createElement('button');
+    decButton10.textContent = '−10';
+    decButton10.onclick = () => {
+        input.stepDown(10);
         saveValue();
     }
 
+    const decButton5 = document.createElement('button');
+    decButton5.textContent = '−5';
+    decButton5.onclick = () => {
+        input.stepDown(5);
+        saveValue();
+    }
+
+    const decContainer = document.createElement('div');
+    decContainer.append(decButton5, decButton10);
+
+    const incButton10 = document.createElement('button');
+    incButton10.textContent = '+10';
+    incButton10.onclick = () => {
+        input.stepUp(10);
+        saveValue();
+    }
+
+    const incButton5 = document.createElement('button');
+    incButton5.textContent = '+5';
+    incButton5.onclick = () => {
+        input.stepUp(5);
+        saveValue();
+    }
+
+    const incContainer = document.createElement('div');
+    incContainer.append(incButton10, incButton5);
+
     const container = document.createElement('div');
-    container.appendChild(decButton);
+    container.appendChild(decContainer);
     container.appendChild(input);
-    container.appendChild(incButton);
+    container.appendChild(incContainer);
     questionContainer.appendChild(container);
 }

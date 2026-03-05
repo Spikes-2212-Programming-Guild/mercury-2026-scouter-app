@@ -5,8 +5,10 @@
 @import "../questions/textarea/textarea.css";
 @import "../questions/radio/radio.css";
 @import "../questions/scorebox/scorebox.css";
-@import "../questions/rangebox/rangebox.css";
 @import "../questions/checkbox/checkbox.css";
+@import "../questions/test/test.css";
+@import "../questions/tripleScoreBox/triplescorebox.css";
+@import "../questions/inputbox/inputbox.css";
 @import "bottom-navigation.css";
 @import "top-navigation.css";
 
@@ -36,10 +38,14 @@ body, .page {
 
 /* ===== Clear All Button ===== */
 #clear-all-button, #exit-button {
-    margin-bottom: 1em;
     font-weight: bold;
+    margin: 0.5em 0;
+
+    align-self: center;
+    width: 50%;
+
     font-size: var(--font-size-medium);
-    color: var(--color-secondary-text);
+    color: var(--color-text-secondary);
     text-shadow: var(--text-shadow) var(--shadow-color-gray);
 }
 
@@ -73,7 +79,7 @@ make the columns and rows able to change from config
 .container-title {
     text-shadow: var(--text-shadow) var(--shadow-color-dark);
     font-size: var(--font-size-medium);
-    color: var(--color-secondary-text);
+    color: var(--color-text-secondary);
     margin: 0 auto;
 }
 

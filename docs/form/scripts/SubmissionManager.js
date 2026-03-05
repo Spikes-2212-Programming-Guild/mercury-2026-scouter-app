@@ -1,28 +1,34 @@
 import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "../../Storage.js";
 import {SERVER_URL} from "../../config/Constants.js";
 
-export class SubmissionManager {
+class SubmissionManager {
 
     constructor() {
         this.submitting = false;
-        this.submissionQueue = JSON.parse(
-            getFromLocalStorage(LOCAL_STORAGE.SUBMISSION_QUEUE)) || [];
+        this.submissionQueue =
+            getFromLocalStorage(LOCAL_STORAGE.SUBMISSION_QUEUE) || [];
 
         setInterval(() => this.processQueue(), 1000 * 60 * 5);
     }
 
     async addSubmission(submission) {
-        this.submissionQueue.push(submission);
-        this.saveQueueToLocalStorage();
-        await this.processQueue();
-    }
 
-    saveQueueToLocalStorage() {
+        const lifetimeSubmissions =
+            getFromLocalStorage(LOCAL_STORAGE.LIFETIME_SUBMISSIONS) || [];
+        lifetimeSubmissions.push(submission);
 
         setToLocalStorage(
+            LOCAL_STORAGE.LIFETIME_SUBMISSIONS,
+            lifetimeSubmissions
+        )
+
+        this.submissionQueue.push(submission);
+        setToLocalStorage(
             LOCAL_STORAGE.SUBMISSION_QUEUE,
-            JSON.stringify(this.submissionQueue)
+            this.submissionQueue
         );
+
+        await this.processQueue();
     }
 
     async processQueue() {
@@ -66,3 +72,5 @@ export class SubmissionManager {
             console.log("Queue empty");
     }
 }
+
+export const submissionManager = new SubmissionManager();

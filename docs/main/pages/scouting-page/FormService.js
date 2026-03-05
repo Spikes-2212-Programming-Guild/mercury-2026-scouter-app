@@ -18,7 +18,7 @@ export class FormService {
 
     saveForm(formId, form, version) {
         const forms = this.getAllForms();
-        forms[formId] = { form, version };
+        forms[formId] = {form, version};
         setToLocalStorage(LOCAL_STORAGE.SAVED_FORMS, forms);
     }
 
@@ -33,7 +33,7 @@ export class FormService {
             this.setCurrentFormVersion(form.version)
         }
 
-        return { form, status };
+        return {form, status};
     }
 
     getCurrentForm() {
@@ -56,7 +56,7 @@ export class FormService {
         try {
             const response = await fetch(
                 `${SERVER_URL}/get-form/${formId}/${version}`,
-                { signal: controller.signal }
+                {signal: controller.signal}
             );
 
             clearTimeout(timeout);
@@ -69,7 +69,7 @@ export class FormService {
                 throw new Error(response.statusText);
             }
 
-            const { form, version: newVersion } = await response.json();
+            const {form, version: newVersion} = await response.json();
             this.saveForm(formId, form, newVersion);
 
             return "Successfully updated form";

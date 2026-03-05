@@ -1,6 +1,7 @@
 @import "../../form/style/constants.css";
 @import "../../config/colorThemes.css";
 @import "top-navigation.css";
+@import "pages.css";
 @import "../pages/scouting-page/scouting-page.css";
 
 * {
@@ -24,9 +25,4 @@ body {
 #main-app {
     display: flex;
     flex-direction: column;
-}
-
-#page-container {
-    padding: 1em;
-    overflow-y: auto;
 }

@@ -1,5 +1,6 @@
 import {FormService} from "./FormService.js";
 import {navigateToForm} from "../../../Router.js";
+import {USE_LOCAL_FORM} from "../../../config/Constants.js";
 
 export class ScoutingPage {
 
@@ -33,19 +34,25 @@ export class ScoutingPage {
         this.versionDisplay = this.renderVersionDisplay();
         this.reloadButton = this.renderReloadButton();
 
-        container.append(
-            this.nameInput,
-            this.startButton,
-            this.versionDisplay,
-            this.reloadButton
-        )
-
+        if (USE_LOCAL_FORM) {
+            container.append(
+                this.startButton
+            )
+        } else {
+            container.append(
+                // this.nameInput,
+                this.startButton,
+                // this.versionDisplay,
+                // this.reloadButton
+            )
+        }
     }
 
     renderNameInput() {
 
         const container = document.createElement('div')
-        container.id = 'name-container'
+        container.classList.add('field');
+        container.id = 'name-field'
 
         const label = document.createElement('label');
         label.id = 'name-label'
@@ -59,7 +66,7 @@ export class ScoutingPage {
 
         const nameInput = document.createElement('input');
         nameInput.id = 'name-input';
-        nameInput.placeholder = 'Enter a form name'
+        nameInput.placeholder = 'enter a form name'
         nameInput.value = this.formService.getCurrentFormId();
         nameInput.onchange = () => {
             this.formService.setCurrentFormId(nameInput.value)
@@ -78,7 +85,8 @@ export class ScoutingPage {
 
     renderVersionDisplay() {
         const container = document.createElement('div')
-        container.id = 'version-container'
+        container.id = 'version-field'
+        container.classList.add('field');
 
         const label = document.createElement('label');
         label.textContent = 'Form Version:'
@@ -109,7 +117,7 @@ export class ScoutingPage {
         maybe make it so if you press "start" it will cancel the sending
      */
     async reloadForm() {
-        const { form, status } = await this.formService.fetchCurrentForm()
+        const {form, status} = await this.formService.fetchCurrentForm()
 
         if (!form) {
             alert(status)

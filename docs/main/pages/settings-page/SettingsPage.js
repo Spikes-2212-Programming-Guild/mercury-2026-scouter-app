@@ -1,13 +1,14 @@
-import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "../../Storage.js";
-
-const COLOR_THEMES = [
-    "purple", "green", "forest", "orange",
-    "pink", "teal", "dark", "frozen", "lavender",
-    "sunset", "ocean", "cyberpunk", "luxury",
-    "beach", "suit"
-]
+import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "../../../Storage.js";
+import {COLOR_THEMES} from "../../../config/Constants.js";
 
 export class SettingsPage {
+
+    /*
+
+    should make the settings page only communicate with each setting.
+    each setting should be its own module
+
+     */
 
     render(container) {
         container.append(this.renderThemeChooser())
@@ -16,7 +17,7 @@ export class SettingsPage {
     renderThemeChooser() {
 
         const container = document.createElement('div');
-        container.classList.add('settings-component');
+        container.classList.add('field');
 
         const title = document.createElement('label');
         title.innerHTML = "Color theme";

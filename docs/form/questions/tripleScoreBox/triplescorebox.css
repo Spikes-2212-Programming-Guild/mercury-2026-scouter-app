@@ -1,0 +1,26 @@
+.TripleScoreBox {
+
+}
+
+.TripleScoreBox > div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.TripleScoreBox > div > div {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.TripleScoreBox > div > div > h1 {
+    margin: 0;
+}
+
+.TripleScoreBox > div > div > button {
+    font-size: var(--font-size-medium);
+    color: var(--color-text);
+    padding: 0 0.5em;
+}

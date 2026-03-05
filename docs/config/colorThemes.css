@@ -1,89 +1,92 @@
 :root[data-theme="purple"] {
     --color-primary: hsl(261, 37%, 46%);
-    --color-secondary: hsl(261, 33%, 30%);
-    --color-secondary-text: hsl(276, 100%, 85%);
+    --color-text-secondary: hsl(276, 100%, 85%);
 }
 
 :root[data-theme="green"] {
     --color-primary: hsl(124, 50%, 35%);
-    --color-secondary: hsl(139, 23%, 24%);
-    --color-secondary-text: hsl(133, 42%, 73%);
+    --color-text-secondary: hsl(133, 42%, 73%);
 }
 
 :root[data-theme="orange"] {
     --color-primary: hsl(26, 60%, 45%);
-    --color-secondary: hsl(24, 35%, 26%);
-    --color-secondary-text: hsl(30, 80%, 82%);
+    --color-text-secondary: hsl(30, 80%, 82%);
 }
 
 :root[data-theme="pink"] {
-    --color-primary: hsl(330, 45%, 55%);
-    --color-secondary: hsl(330, 25%, 30%);
-    --color-secondary-text: hsl(335, 70%, 85%);
+    --color-primary: hsl(330, 35%, 50%);
+    --color-text-secondary: hsl(335, 45%, 82%);
 }
 
 :root[data-theme="teal"] {
     --color-primary: hsl(195, 55%, 38%);
-    --color-secondary: hsl(195, 30%, 24%);
-    --color-secondary-text: hsl(195, 70%, 75%);
+    --color-text-secondary: hsl(195, 70%, 75%);
 }
 
 :root[data-theme="dark"] {
     --color-primary: hsl(220, 15%, 30%);
-    --color-secondary: hsl(220, 10%, 14%);
-    --color-secondary-text: hsl(220, 80%, 80%);
+    --color-text-secondary: hsl(220, 80%, 80%);
 }
 
 :root[data-theme="forest"] {
     --color-primary: hsl(110, 35%, 30%);
-    --color-secondary: hsl(139, 23%, 24%);
-    --color-secondary-text: hsl(110, 45%, 70%);
+    --color-text-secondary: hsl(110, 45%, 70%);
 }
 
 :root[data-theme="frozen"] {
     --color-primary: hsl(210, 41%, 58%);
-    --color-secondary: hsl(210, 35%, 55%);
-    --color-secondary-text: hsl(210, 100%, 90%);
+    --color-text-secondary: hsl(210, 100%, 90%);
 }
 
 :root[data-theme="lavender"] {
     --color-primary: hsl(250, 40%, 58%);
-    --color-secondary: hsl(250, 25%, 40%);
-    --color-secondary-text: hsl(260, 80%, 88%);
+    --color-text-secondary: hsl(260, 80%, 88%);
 }
 
 :root[data-theme="sunset"] {
     --color-primary: hsl(26, 60%, 50%);
-    --color-secondary: hsl(345, 45%, 35%);
-    --color-secondary-text: hsl(347, 65%, 75%);
+    --color-text-secondary: hsl(347, 40%, 50%);
 }
 
 :root[data-theme="ocean"] {
     --color-primary: hsl(200, 70%, 40%);
-    --color-secondary: hsl(215, 40%, 25%);
-    --color-secondary-text: hsl(195, 100%, 80%);
+    --color-text-secondary: hsl(195, 100%, 80%);
 }
 
 :root[data-theme="cyberpunk"] {
     --color-primary: hsl(330, 45%, 55%);
-    --color-secondary: hsl(215, 40%, 25%);
-    --color-secondary-text: hsl(195, 100%, 80%);
+    --color-text-secondary: hsl(195, 100%, 80%);
 }
 
 :root[data-theme="luxury"] {
     --color-primary: #A67A46;
-    --color-secondary: #3B3C40;
-    --color-secondary-text: #F2E2C4;
+    --color-text-secondary: #F2E2C4;
 }
 
 :root[data-theme="beach"] {
     --color-primary: #4193A6;
-    --color-secondary: #3B3C40;
-    --color-secondary-text: #F2E6D0;
+    --color-text-secondary: #F2E6D0;
 }
 
 :root[data-theme="suit"] {
     --color-primary: #C0392B;
-    --color-secondary: #3B3C40;
-    --color-secondary-text: #F2E2C4;
+    --color-text-secondary: #F2E2C4;
+}
+
+:root[data-theme="midnight"] {
+    --color-primary: hsl(230, 30%, 28%);
+    --color-secondary: hsl(230, 25%, 14%);
+    --color-secondary-text: hsl(230, 40%, 75%);
+}
+
+:root[data-theme="slate"] {
+    --color-primary: hsl(210, 15%, 38%);
+    --color-secondary: hsl(210, 15%, 18%);
+    --color-secondary-text: hsl(210, 20%, 78%);
+}
+
+:root[data-theme="ember"] {
+    --color-primary: hsl(15, 45%, 40%);
+    --color-secondary: hsl(15, 25%, 20%);
+    --color-secondary-text: hsl(20, 40%, 75%);
 }

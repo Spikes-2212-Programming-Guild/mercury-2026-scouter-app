@@ -23,11 +23,7 @@ export function renderAutoComplete(jsonQuestionData, questionContainer) {
         option1.value = c.value;
         option1.label = c.description
 
-        const option2 = document.createElement('option');
-
-        option2.value = c.value;
-
-        datalist.append(option1, option2);
+        datalist.append(option1);
     }
 
     // connect the datalist to the input

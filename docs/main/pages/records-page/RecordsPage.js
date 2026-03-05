@@ -1,15 +1,16 @@
-import {getFromLocalStorage, LOCAL_STORAGE} from "../../Storage.js";
+import {getFromLocalStorage, LOCAL_STORAGE} from "../../../Storage.js";
 
 export class RecordsPage {
 
     render(container) {
-        this.submissionQueue = JSON.parse(
-            getFromLocalStorage(LOCAL_STORAGE.SUBMISSION_QUEUE)) || [];
+        this.submissions = getFromLocalStorage(LOCAL_STORAGE.LIFETIME_SUBMISSIONS) || [];
+
+        console.log(this.submissions);
 
         const submissionContainer = document.createElement('div')
         container.append(submissionContainer)
 
-        for (const submission of this.submissionQueue) {
+        for (const submission of this.submissions) {
             this.renderSubmission(submissionContainer, submission)
         }
     }

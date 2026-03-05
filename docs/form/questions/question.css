@@ -7,6 +7,7 @@
 
 .question.horizontal {
     flex-direction: row;
+    gap: 1em;
 }
 
 .question:not(.depth) {
@@ -29,6 +30,10 @@
     text-shadow: var(--text-shadow) var(--shadow-color-dark);
 }
 
+.question.horizontal h1 {
+    text-align: left;
+}
+
 /* ===== changing focus outline ===== */
 :focus {
     border-color: var(--color-primary);
@@ -45,7 +50,7 @@ input, select, form, textarea, .RangeBox label {
     border-radius: var(--border-radius-medium);
     border: var(--color-bg-light) 3px solid;
 
-    color: var(--color-secondary-text);
+    color: var(--color-text-secondary);
     box-shadow: var(--shadow-medium) var(--shadow-color-gray) !important;
 }
 

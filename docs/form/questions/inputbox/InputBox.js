@@ -11,9 +11,10 @@ export function renderInputBox(jsonQuestionData, questionContainer) {
     input = document.createElement('input');
     input.type = 'text';
     input.id = jsonQuestionData.id;
-    input.value = getFromLocalStorage(jsonQuestionData.id) ?? '';
+    input.value = getFromLocalStorage(jsonQuestionData.id) || null;
+
     input.oninput = () => {
-        if (input.value === '') {
+        if (input.value === '' || input.value.trim() === '') {
             input.classList.add('invalid');
         } else {
             input.classList.remove('invalid');

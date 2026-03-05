@@ -5,20 +5,23 @@ import {
     SWIPE_HORIZONTAL_THRESHOLD,
     SWIPE_VERTICAL_THRESHOLD,
     TELEOP_PAGE_INDEX,
-    TRIGGER_ID
+    TRIGGER_ID,
+    USE_LOCAL_FORM
 } from "../../config/Constants.js";
 import {getFromLocalStorage, LOCAL_STORAGE, removeFromLocalStorage, setToLocalStorage} from "../../Storage.js";
 import {renderRadio} from "../questions/radio/Radio.js";
 import {renderList} from "../questions/list/List.js";
 import {renderAutoComplete} from "../questions/autocomplete/AutoComplete.js";
 import {renderScoreBox} from "../questions/scorebox/ScoreBox.js";
-import {renderRangeBox} from "../questions/rangebox/RangeBox.js";
 import {renderTextArea} from "../questions/textarea/TextArea.js";
 import {renderInputBox} from "../questions/inputbox/InputBox.js";
 import {navigateToMain} from "../../Router.js";
-import {SubmissionManager} from "./SubmissionManager.js";
+import {submissionManager} from "./SubmissionManager.js";
 import {renderCheckBox} from "../questions/checkbox/CheckBox.js";
-import {SettingsPage} from "../../main/pages/SettingsPage.js";
+import {SettingsPage} from "../../main/pages/settings-page/SettingsPage.js";
+import formData from "../../form.json" with {type: "json"};
+import {renderTest} from "../questions/test/Test.js";
+import {renderTripleScoreBox} from "../questions/tripleScoreBox/TripleScoreBox.js";
 
 const questionRenderers = {
     'InputBox': renderInputBox,
@@ -27,8 +30,9 @@ const questionRenderers = {
     'AutoComplete': renderAutoComplete,
     'ScoreBox': renderScoreBox,
     'TextArea': renderTextArea,
-    'RangeBox': renderRangeBox,
     'CheckBox': renderCheckBox,
+    'TripleScoreBox': renderTripleScoreBox,
+    'TestBox': renderTest,
 };
 
 /*
@@ -50,20 +54,21 @@ export class FormApp {
     render() {
 
         /*
-
         make it use FormService (make it singleton)
-
          */
-        const forms = getFromLocalStorage(LOCAL_STORAGE.SAVED_FORMS);
-        const formId = getFromLocalStorage(LOCAL_STORAGE.CURRENT_FORM_ID)
+        if (USE_LOCAL_FORM) {
+            this.form = formData;
 
-        if (!forms || !formId || !forms[formId]) {
-            navigateToMain()
+        } else {
+            const forms = getFromLocalStorage(LOCAL_STORAGE.SAVED_FORMS);
+            const formId = getFromLocalStorage(LOCAL_STORAGE.CURRENT_FORM_ID)
+
+            if (!forms || !formId || !forms[formId]) {
+                navigateToMain()
+            }
+
+            this.form = JSON.parse(forms[formId].form)
         }
-
-        this.form = JSON.parse(forms[formId].form)
-
-        this.submissionManager = new SubmissionManager()
 
         this.pageQuestions = this.indexAllPages()
         this.renderTopNavigationBar()
@@ -73,8 +78,8 @@ export class FormApp {
         this.renderBottomNavigationBar()
 
         // this.autoStartTeleop();
-        this.setUpSwipeListeners();
-        this.displayPage(Number(getFromLocalStorage(LOCAL_STORAGE.PAGE_INDEX) || 0));
+        this.addSwipeListeners();
+        this.displayPage(Number(getFromLocalStorage(LOCAL_STORAGE.CURRENT_FORM_PAGE_INDEX) || 0));
         this.setColorTheme()
     }
 
@@ -147,7 +152,7 @@ export class FormApp {
         }
 
         window.scrollTo(0, 0);
-        setToLocalStorage(LOCAL_STORAGE.PAGE_INDEX, pageIndex);
+        setToLocalStorage(LOCAL_STORAGE.CURRENT_FORM_PAGE_INDEX, pageIndex);
     }
 
     renderAllPages() {
@@ -226,7 +231,7 @@ export class FormApp {
         exitButton.textContent = 'Save & Exit';
         exitButton.id = 'exit-button';
         exitButton.onclick = () => {
-            // if (!confirm("Confirm Return")) return;
+            if (!confirm("Confirm Exit")) return;
             navigateToMain()
         }
         this.appContainer.appendChild(exitButton);
@@ -284,14 +289,14 @@ export class FormApp {
     }
 
     nextPage() {
-        let cur = getFromLocalStorage(LOCAL_STORAGE.PAGE_INDEX ?? 0);
+        let cur = getFromLocalStorage(LOCAL_STORAGE.CURRENT_FORM_PAGE_INDEX ?? 0);
         cur++;
         if (this.form.pages.length === cur) return;
         this.displayPage(cur);
     }
 
     previousPage() {
-        let cur = getFromLocalStorage(LOCAL_STORAGE.PAGE_INDEX ?? 0);
+        let cur = getFromLocalStorage(LOCAL_STORAGE.CURRENT_FORM_PAGE_INDEX ?? 0);
         cur--;
         if (cur < 0) return;
         this.displayPage(cur);
@@ -299,20 +304,20 @@ export class FormApp {
 
     async submit() {
 
-        let answers = this.getFormAnswers()
+        // let answers = this.getFormAnswers()
 
-        // let answers = { "hello": "test" };
+        let answers = {"hello": "123"};
 
         // if all answers are invalid
         if (!answers) return
 
-        // if (!confirm("Confirm Submit")) return;
+        if (!confirm("Confirm Submit")) return;
 
         this.clearAllQuestions();
         this.displayPage(0);
         navigateToMain();
 
-        await this.submissionManager.addSubmission(answers);
+        await submissionManager.addSubmission(answers);
     }
 
     getFormAnswers() {
@@ -351,7 +356,7 @@ export class FormApp {
             if (getFromLocalStorage(triggerQuestion.id)) return;
 
             setTimeout(() => {
-                if (Number(getFromLocalStorage(LOCAL_STORAGE.PAGE_INDEX)) === AUTO_PAGE_INDEX) {
+                if (Number(getFromLocalStorage(LOCAL_STORAGE.CURRENT_FORM_PAGE_INDEX)) === AUTO_PAGE_INDEX) {
                     this.displayPage(TELEOP_PAGE_INDEX);
                 }
             }, AUTO_DURATION_MS)
@@ -360,7 +365,14 @@ export class FormApp {
         triggerQuestion.addEventListener('click', handleClick, {capture: true});
     }
 
-    setUpSwipeListeners() {
+    removeSwipeListeners() {
+        if (this._touchStartHandler) {
+            document.removeEventListener("touchstart", this._touchStartHandler);
+            document.removeEventListener("touchend", this._touchEndHandler);
+        }
+    }
+
+    addSwipeListeners() {
         let startX = 0, startY = 0;
 
         if (this._touchStartHandler) {

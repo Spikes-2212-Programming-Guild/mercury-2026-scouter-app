@@ -1,9 +1,17 @@
 import {ScoutingPage} from '../pages/scouting-page/ScoutingPage.js';
-import {RecordsPage} from '../pages/RecordsPage.js';
-import {SettingsPage} from '../pages/SettingsPage.js';
+import {RecordsPage} from '../pages/records-page/RecordsPage.js';
+import {SettingsPage} from '../pages/settings-page/SettingsPage.js';
 import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "../../Storage.js";
+import {SWIPE_HORIZONTAL_THRESHOLD, SWIPE_VERTICAL_THRESHOLD} from "../../config/Constants.js";
 
 export class MainApp {
+
+
+    /*
+    todo:
+        maybe render the objects in the constructor, and make the "pages" map
+        be "page id" : "page DOM"
+     */
 
     constructor(appContainer) {
         this.appContainer = appContainer;
@@ -17,8 +25,9 @@ export class MainApp {
     render() {
         this.renderNavigation();
         this.renderAllPages();
-        const pageId = getFromLocalStorage(LOCAL_STORAGE.PAGE_ID) || Object.keys(this.pages)[0]
-        this.displayPage(pageId)
+        const currentPageIndex = getFromLocalStorage(LOCAL_STORAGE.CURRENT_MAIN_PAGE_INDEX) || 0;
+        this.displayPage(currentPageIndex)
+        this.addSwipeListeners()
     }
 
     renderNavigation() {
@@ -26,15 +35,15 @@ export class MainApp {
         this.navContainer.id = 'top-navigation';
         this.appContainer.appendChild(this.navContainer);
 
-        for (const pageId of Object.keys(this.pages)) {
-            this.navContainer.appendChild(this.renderNavButton(pageId));
-        }
+        Object.keys(this.pages).forEach((pageName, pageIndex) => {
+            this.navContainer.appendChild(this.renderNavButton(pageName, pageIndex));
+        });
     }
 
-    renderNavButton(pageId) {
+    renderNavButton(pageName, pageIndex) {
         const button = document.createElement('button');
-        button.textContent = pageId;
-        button.addEventListener('click', () => this.displayPage(pageId));
+        button.textContent = pageName;
+        button.addEventListener('click', () => this.displayPage(pageIndex));
         return button;
     }
 
@@ -46,26 +55,80 @@ export class MainApp {
         for (const [pageId, pageObject] of Object.entries(this.pages)) {
             const pageDiv = document.createElement('div');
             pageDiv.id = pageId;
+            pageDiv.classList.add('page');
 
             this.pageContainer.appendChild(pageDiv);
             pageObject.render(pageDiv);
         }
     }
 
-    displayPage(pageId) {
-        setToLocalStorage(LOCAL_STORAGE.PAGE_ID, pageId);
+    displayPage(pageIndex) {
+        setToLocalStorage(LOCAL_STORAGE.CURRENT_MAIN_PAGE_INDEX, pageIndex);
+        Object.values(this.pageContainer.children).forEach((page, index) => {
 
-        for (const page of this.pageContainer.children) {
-
-            if (page.id === pageId) {
+            if (index === pageIndex) {
                 page.classList.remove("hidden");
             } else {
                 page.classList.add("hidden");
             }
+
+        });
+
+        Object.values(this.navContainer.children).forEach((button, index) => {
+            button.classList.toggle('active', index === pageIndex);
+        });
+    }
+
+    removeSwipeListeners() {
+        if (this._touchStartHandler) {
+            document.removeEventListener("touchstart", this._touchStartHandler);
+            document.removeEventListener("touchend", this._touchEndHandler);
+        }
+    }
+
+    addSwipeListeners() {
+        let startX = 0, startY = 0;
+
+        if (this._touchStartHandler) {
+            document.removeEventListener("touchstart", this._touchStartHandler);
+            document.removeEventListener("touchend", this._touchEndHandler);
         }
 
-        for (const button of this.navContainer.children) {
-            button.classList.toggle('active', button.textContent === pageId);
+        this._touchStartHandler = e => {
+            const t = e.touches[0];
+            startX = t.clientX;
+            startY = t.clientY;
+        };
+
+        const movePage = (direction) => {
+            const currentPageIndex = getFromLocalStorage(LOCAL_STORAGE.CURRENT_MAIN_PAGE_INDEX);
+            const pageAmount = Object.keys(this.pages).length;
+            const newPageIndex =
+                Math.max(0, Math.min(currentPageIndex + direction, pageAmount - 1));
+            this.displayPage(newPageIndex);
         }
+
+        this._touchEndHandler = e => {
+            const t = e.changedTouches[0];
+            const endX = t.clientX;
+            const endY = t.clientY;
+
+            const diffX = endX - startX;
+            const diffY = endY - startY;
+
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+
+            if (Math.abs(diffY) > screenHeight * SWIPE_VERTICAL_THRESHOLD) return;
+
+            if (diffX > screenWidth * SWIPE_HORIZONTAL_THRESHOLD) {
+                movePage(-1);
+            } else if (diffX < -screenWidth * SWIPE_HORIZONTAL_THRESHOLD) {
+                movePage(1);
+            }
+        };
+
+        document.addEventListener("touchstart", this._touchStartHandler);
+        document.addEventListener("touchend", this._touchEndHandler);
     }
 }
