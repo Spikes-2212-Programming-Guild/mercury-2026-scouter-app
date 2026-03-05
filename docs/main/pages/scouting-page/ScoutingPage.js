@@ -1,6 +1,5 @@
 import {FormService} from "./FormService.js";
 import {navigateToForm} from "../../../Router.js";
-import {USE_LOCAL_FORM} from "../../../config/Constants.js";
 
 export class ScoutingPage {
 
@@ -29,23 +28,42 @@ export class ScoutingPage {
      */
 
     render(container) {
-        this.nameInput = this.renderNameInput();
-        this.startButton = this.renderStartButton();
-        this.versionDisplay = this.renderVersionDisplay();
-        this.reloadButton = this.renderReloadButton();
 
-        if (USE_LOCAL_FORM) {
-            container.append(
-                this.startButton
-            )
-        } else {
-            container.append(
-                // this.nameInput,
-                this.startButton,
-                // this.versionDisplay,
-                // this.reloadButton
-            )
+        container.append(this.renderStartButton());
+    }
+
+    renderStartButton() {
+        const startButton = document.createElement('button');
+        startButton.onclick = () => this.startScouting();
+        startButton.textContent = "Start Scouting"
+        return startButton;
+    }
+
+    // TODO: maybe turn it into an inner function
+    startScouting() {
+        // const form = this.formService.getCurrentForm()
+        //
+        // if (!form) {
+        //     alert('Invalid form, please reload')
+        //     return;
+        // }
+
+        navigateToForm();
+    }
+
+    /*
+        disable sending another request until the former is returned
+        maybe make it so if you press "start" it will cancel the sending
+     */
+    async reloadForm() {
+        const {form, status} = await this.formService.fetchCurrentForm()
+
+        if (!form) {
+            alert(status)
         }
+
+        const formVersion = this.formService.getCurrentFormVersion();
+        this.updateVersionDisplay(formVersion)
     }
 
     renderNameInput() {
@@ -103,39 +121,5 @@ export class ScoutingPage {
 
         container.append(label, versionDisplay)
         return container;
-    }
-
-    renderStartButton() {
-        const startButton = document.createElement('button');
-        startButton.onclick = () => this.startScouting();
-        startButton.textContent = "Start Scouting"
-        return startButton;
-    }
-
-    /*
-        disable sending another request until the former is returned
-        maybe make it so if you press "start" it will cancel the sending
-     */
-    async reloadForm() {
-        const {form, status} = await this.formService.fetchCurrentForm()
-
-        if (!form) {
-            alert(status)
-        }
-
-        const formVersion = this.formService.getCurrentFormVersion();
-        this.updateVersionDisplay(formVersion)
-    }
-
-    // TODO: maybe turn it into an inner function
-    startScouting() {
-        const form = this.formService.getCurrentForm()
-
-        if (!form) {
-            alert('Invalid form, please reload')
-            return;
-        }
-
-        navigateToForm();
     }
 }

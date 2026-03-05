@@ -8,6 +8,26 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./service-worker.js");
 }
 
+function removeService() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+            registrations.forEach(registration => {
+                registration.unregister().then(success => {
+                    if (success) {
+                        console.log('Service worker unregistered');
+                    }
+                });
+            });
+        });
+    }
+    caches.keys().then(keys => {
+        keys.forEach(key => caches.delete(key));
+    });
+}
+
+setToLocalStorage(LOCAL_STORAGE.CURRENT_FORM_ID, "matchDis2")
+setToLocalStorage(LOCAL_STORAGE.CURRENT_FORM_VERSION, "69")
+
 const formApp = new FormApp(document.body)
 const mainApp = new MainApp(document.body)
 

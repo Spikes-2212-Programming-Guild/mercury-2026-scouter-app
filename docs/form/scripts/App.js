@@ -5,8 +5,7 @@ import {
     SWIPE_HORIZONTAL_THRESHOLD,
     SWIPE_VERTICAL_THRESHOLD,
     TELEOP_PAGE_INDEX,
-    TRIGGER_ID,
-    USE_LOCAL_FORM
+    TRIGGER_ID
 } from "../../config/Constants.js";
 import {getFromLocalStorage, LOCAL_STORAGE, removeFromLocalStorage, setToLocalStorage} from "../../Storage.js";
 import {renderRadio} from "../questions/radio/Radio.js";
@@ -53,23 +52,7 @@ export class FormApp {
 
     render() {
 
-        /*
-        make it use FormService (make it singleton)
-         */
-        if (USE_LOCAL_FORM) {
-            this.form = formData;
-
-        } else {
-            const forms = getFromLocalStorage(LOCAL_STORAGE.SAVED_FORMS);
-            const formId = getFromLocalStorage(LOCAL_STORAGE.CURRENT_FORM_ID)
-
-            if (!forms || !formId || !forms[formId]) {
-                navigateToMain()
-            }
-
-            this.form = JSON.parse(forms[formId].form)
-        }
-
+        this.form = formData;
         this.pageQuestions = this.indexAllPages()
         this.renderTopNavigationBar()
         this.renderAllPages();
