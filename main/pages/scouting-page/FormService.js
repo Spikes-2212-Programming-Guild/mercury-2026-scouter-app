@@ -87,7 +87,7 @@ export class FormService {
     }
 
     setCurrentFormId(newId) {
-        setToLocalStorage(LOCAL_STORAGE.CURRENT_FORM_ID, newId);
+        setToLocalStorage(LOCAL_STORAGE.CURRENT_FORM_ICD, newId);
     }
 
     getCurrentFormId() {

@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/favicon.ico", (req, res) => {
-    res.sendFile(path.join(__dirname, "favicon.svg"));
+    res.sendFile(path.join(__dirname, "/config/favicon.svg"));
 });
 
 app.listen(PORT, "0.0.0.0", () => {

@@ -1,38 +1,56 @@
-const CACHE_NAME = "Mercury2026";
-const PRECACHE_FILES = [
-    "/form.json"
+const CACHE_NAME = 'my-app-cache-v1';
+
+const FILES_TO_CACHE = [
+    '/',
+    './index.html',
+    './form.json',
+    './Router.js',
+    './Storage.js',
+    './config/constants.css',
+    './config/Constants.js',
+    './config/colorThemes.css',
+    './main/style/main.css',
+    './main/style/pages.css',
+    './main/style/top-navigation.css',
+    './main/scripts/Main.js',
+    './main/pages/records-page/RecordsPage.js',
+    './main/pages/scouting-page/FormService.js',
+    './main/pages/scouting-page/scouting-page.css',
+    './main/pages/scouting-page/ScoutingPage.js',
+    './main/pages/settings-page/SettingsPage.js',
+    './form/style/top-navigation.css',
+    './form/style/form.css',
+    './form/style/bottom-navigation.css',
+    './form/scripts/App.js',
+    './form/scripts/SubmissionManager.js',
+    './form/questions/question.css',
+    './form/questions/autocomplete/AutoComplete.js',
+    './form/questions/checkbox/checkbox.css',
+    './form/questions/checkbox/CheckBox.js',
+    './form/questions/inputbox/inputbox.css',
+    './form/questions/inputbox/InputBox.js',
+    './form/questions/list/list.css',
+    './form/questions/list/List.js',
+    './form/questions/radio/radio.css',
+    './form/questions/radio/Radio.js',
+    './form/questions/scorebox/scorebox.css',
+    './form/questions/scorebox/ScoreBox.js',
+    './form/questions/test/test.css',
+    './form/questions/test/Test.js',
+    './form/questions/textarea/textarea.css',
+    './form/questions/textarea/TextArea.js',
+    './form/questions/tripleScoreBox/triplescorebox.css',
+    './form/questions/tripleScoreBox/TripleScoreBox.js',
 ];
 
-self.addEventListener("install", event => {
-    self.skipWaiting();
+self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(PRECACHE_FILES))
+        caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE))
     );
 });
 
-// clear old
-self.addEventListener("activate", (event) => {
-    event.waitUntil(
-        caches.keys().then(keys => {
-            return Promise.all(
-                keys.filter(key => key !== CACHE_NAME)
-                    .map(key => caches.delete(key))
-            );
-        }).then(() => self.clients.claim())
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        caches.match(event.request).then(response => response || fetch(event.request))
     );
-});
-
-self.addEventListener("fetch", event => {
-    if (!event.request.url.startsWith(self.location.origin)) return;
-
-    event.respondWith(fetch(event.request).then(networkResponse => { // Put a copy of the response in cache
-        const clone = networkResponse.clone();
-        caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, clone);
-        });
-        return networkResponse;
-    }).catch(() => { // Network failed, fallback to cache
-        return caches.match(event.request);
-    }));
 });

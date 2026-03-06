@@ -14,5 +14,44 @@
 <link rel="manifest" href="manifest.json">
 <script type="module" src="Router.js"></script>
 
+<script>
+
+    comment = (msg) => {
+        const label = document.createElement('label');
+        label.innerHTML = msg;
+        document.body.appendChild(label);
+    }
+
+    comment(navigator.serviceWorker)
+
+    if ('serviceWorker' in navigator) {
+
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+            registrations.forEach(reg => {
+                reg.unregister().then(success => {
+                    if (success) console.log('Service worker unregistered:', reg.scope);
+                });
+            });
+        });
+    }
+
+
+    caches.keys().then(keys => {
+        keys.forEach(key => {
+            caches.delete(key).then(success => {
+                if (success) console.log('Cache deleted:', key);
+            });
+        });
+    });
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./service-worker.js')
+                .then(reg => console.log('Service worker registered.', reg))
+                .catch(err => console.error('SW registration failed:', err));
+        });
+    }
+</script>
+
 </body>
 </html>
