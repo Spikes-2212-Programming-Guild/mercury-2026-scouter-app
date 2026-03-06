@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-app-cache-v1';
+const CACHE_NAME = 'Mercury2026';
 
 const FILES_TO_CACHE = [
     '/',
@@ -43,14 +43,44 @@ const FILES_TO_CACHE = [
     './form/questions/tripleScoreBox/TripleScoreBox.js',
 ];
 
-self.addEventListener('install', (event) => {
+self.addEventListener("install", event => {
+
+    console.log("SW install");
+
     event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE))
+        caches.open(CACHE_NAME).then(cache => {
+            console.log("Caching files");
+            return cache.addAll(FILES_TO_CACHE);
+        })
     );
+
 });
 
-self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request).then(response => response || fetch(event.request))
+self.addEventListener("activate", event => {
+
+    console.log("SW activate");
+
+    event.waitUntil(
+        caches.keys().then(keys =>
+            Promise.all(
+                keys.map(key => {
+                    if (key !== CACHE_NAME) {
+                        console.log("Deleting old cache:", key);
+                        return caches.delete(key);
+                    }
+                })
+            )
+        )
     );
+
+});
+
+self.addEventListener("fetch", event => {
+
+    event.respondWith(
+        caches.match(event.request).then(response => {
+            return response || fetch(event.request);
+        })
+    );
+
 });

@@ -15,41 +15,65 @@
 <script type="module" src="Router.js"></script>
 
 <script>
-
-    comment = (msg) => {
-        const label = document.createElement('label');
-        label.innerHTML = msg;
+    const log = (msg) => {
+        const label = document.createElement('div');
+        label.textContent = msg;
         document.body.appendChild(label);
-    }
+    };
 
-    comment(navigator.serviceWorker)
-
-    if ('serviceWorker' in navigator) {
-
-        comment("Success")
-
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-            registrations.forEach(reg => {
-                reg.unregister().then(success => {
-                    if (success) comment('Service worker unregistered:', reg.scope);
-                });
-            });
-        });
-    }
-
-
-    caches.keys().then(keys => {
-        keys.forEach(key => {
-            caches.delete(key).then(success => {
-                if (success) comment('Cache deleted:', key);
-            });
-        });
-    });
+    // Show if SW API exists
+    log("navigator.serviceWorker: " + navigator.serviceWorker);
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./service-worker.js', {scope: './'})
-            .then(reg => comment('SW registered', reg))
-            .catch(err => comment('SW registration failed', err));
+
+        log("ServiceWorker supported");
+
+        // OPTIONAL: clear old service workers + caches (good for testing)
+        async function clearOldData() {
+            const regs = await navigator.serviceWorker.getRegistrations();
+            for (const reg of regs) {
+                await reg.unregister();
+                log("Old SW unregistered: " + reg.scope);
+            }
+
+            const keys = await caches.keys();
+            for (const key of keys) {
+                await caches.delete(key);
+                log("Cache deleted: " + key);
+            }
+        }
+
+        // comment this out when not debugging
+        // clearOldData();
+
+        window.addEventListener("load", async () => {
+
+            try {
+
+                const reg = await navigator.serviceWorker.register('./service-worker.js', { scope: './' });
+
+                log("SW registered: " + reg.scope);
+
+                await navigator.serviceWorker.ready;
+
+                log("SW ready");
+
+                const keys = await caches.keys();
+
+                log("Cache keys: " + (keys.length ? keys.join(", ") : "none"));
+
+            } catch (err) {
+
+                log("SW registration failed: " + err);
+
+            }
+
+        });
+
+    } else {
+
+        log("ServiceWorker NOT supported");
+
     }
 </script>
 
