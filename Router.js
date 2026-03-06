@@ -17,7 +17,7 @@ const appCss = document.getElementById('main-css')
 
 export function navigateToForm() {
     mainApp.removeSwipeListeners();
-    // document.body.innerHTML = ''
+    document.body.innerHTML = ''
     formCss.disabled = false;
     appCss.disabled = true;
     formApp.render()
@@ -26,7 +26,7 @@ export function navigateToForm() {
 
 export function navigateToMain() {
     formApp.removeSwipeListeners();
-    // document.body.innerHTML = ''
+    document.body.innerHTML = ''
     formCss.disabled = true;
     appCss.disabled = false;
     mainApp.render()
