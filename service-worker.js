@@ -76,11 +76,22 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
-
     event.respondWith(
-        caches.match(event.request).then(response => {
-            return response || fetch(event.request);
-        })
-    );
+        caches.open(CACHE_NAME).then(cache =>
+            cache.match(event.request).then(cachedResponse => {
+                const fetchPromise = fetch(event.request).then(networkResponse => {
+                    // Update cache with new response
+                    if (networkResponse && networkResponse.status === 200) {
+                        cache.put(event.request, networkResponse.clone());
+                    }
+                    return networkResponse;
+                }).catch(() => {
+                    // If offline and not in cache, just fail
+                });
 
+                // Return cached response immediately if available, else wait for network
+                return cachedResponse || fetchPromise;
+            })
+        )
+    );
 });

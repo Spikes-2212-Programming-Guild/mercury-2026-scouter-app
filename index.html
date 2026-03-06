@@ -28,7 +28,6 @@
 
         log("ServiceWorker supported");
 
-        // OPTIONAL: clear old service workers + caches (good for testing)
         async function clearOldData() {
             const regs = await navigator.serviceWorker.getRegistrations();
             for (const reg of regs) {

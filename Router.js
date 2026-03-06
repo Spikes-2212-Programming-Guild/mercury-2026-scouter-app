@@ -3,7 +3,8 @@ import {MainApp} from "./main/scripts/Main.js";
 import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "./Storage.js";
 
 // clearLocalStorage()
-// console.log("12")
+
+// console.log("232");
 
 setToLocalStorage(LOCAL_STORAGE.CURRENT_FORM_ID, "matchDis2")
 setToLocalStorage(LOCAL_STORAGE.CURRENT_FORM_VERSION, "69")
