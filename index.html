@@ -26,10 +26,12 @@
 
     if ('serviceWorker' in navigator) {
 
+        comment("Success")
+
         navigator.serviceWorker.getRegistrations().then(registrations => {
             registrations.forEach(reg => {
                 reg.unregister().then(success => {
-                    if (success) console.log('Service worker unregistered:', reg.scope);
+                    if (success) comment('Service worker unregistered:', reg.scope);
                 });
             });
         });
@@ -39,17 +41,15 @@
     caches.keys().then(keys => {
         keys.forEach(key => {
             caches.delete(key).then(success => {
-                if (success) console.log('Cache deleted:', key);
+                if (success) comment('Cache deleted:', key);
             });
         });
     });
 
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./service-worker.js')
-                .then(reg => console.log('Service worker registered.', reg))
-                .catch(err => console.error('SW registration failed:', err));
-        });
+        navigator.serviceWorker.register('./service-worker.js', {scope: './'})
+            .then(reg => comment('SW registered', reg))
+            .catch(err => comment('SW registration failed', err));
     }
 </script>
 
