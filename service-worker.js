@@ -1,7 +1,7 @@
 const CACHE_NAME = 'Mercury2026';
 
 const FILES_TO_CACHE = [
-    '/',
+    './',
     './index.html',
     './form.json',
     './Router.js',
