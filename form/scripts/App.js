@@ -18,9 +18,9 @@ import {navigateToMain} from "../../Router.js";
 import {submissionManager} from "./SubmissionManager.js";
 import {renderCheckBox} from "../questions/checkbox/CheckBox.js";
 import {SettingsPage} from "../../main/pages/settings-page/SettingsPage.js";
-import formData from "../../form.json" with {type: "json"};
-import {renderTest} from "../questions/test/Test.js";
+import formData from "../../forms/form.json" with {type: "json"};
 import {renderTripleScoreBox} from "../questions/tripleScoreBox/TripleScoreBox.js";
+import {renderCycle} from "../questions/cycle/Cycle.js";
 
 const questionRenderers = {
     'InputBox': renderInputBox,
@@ -31,7 +31,7 @@ const questionRenderers = {
     'TextArea': renderTextArea,
     'CheckBox': renderCheckBox,
     'TripleScoreBox': renderTripleScoreBox,
-    'TestBox': renderTest,
+    'Cycle': renderCycle,
 };
 
 /*
@@ -287,9 +287,35 @@ export class FormApp {
 
     async submit() {
 
-        // let answers = this.getFormAnswers()
+        let answers = this.getFormAnswers()
 
-        let answers = {"hello": "123"};
+        // let answers = {"hello": "123"};
+
+        // let answers = {
+        //     "scouter-name": "ET",
+        //     "match-type": "Practice",
+        //     "alliance": "Red",
+        //     "team-number": "2212",
+        //     "match-number": "23",
+        //     "auto-hub-score": "60",
+        //     "auto-pass": "20",
+        //     "auto-accuracy": "Didn't miss (100-90%)",
+        //     "auto-climb": "Middle",
+        //     "auto-picked-from-depot": true,
+        //     "auto-picked-from-outpost": true,
+        //     "auto-picked-from-neutral": true,
+        //     "auto-picked-from-floor": false,
+        //     "teleop-hub-score": "10",
+        //     "teleop-pass": "20",
+        //     "teleop-accuracy": "Didn't miss (100-90%)",
+        //     "teleop-inactive": "collected,passed,blocked bump or trench",
+        //     "end-shot": "Yes",
+        //     "end-climb-position": "Didn't try",
+        //     "end-climb-level": "L3",
+        //     "post-affected-by-defense": "Yes",
+        //     "post-robot-status": "Working Normally",
+        //     "post-notes": "232131vף3]פ43"
+        // }
 
         // if all answers are invalid
         if (!answers) return
@@ -315,12 +341,14 @@ export class FormApp {
                 const question = document.getElementById(questionId);
                 question.classList.remove("invalid")
 
-                console.log(`${questionId}: ${value}`)
+                console.log(`${questionId}:`, value)
 
                 if (value === null || value === undefined) {
                     this.displayPage(pageIndex);
+
                     question.classList.toggle("invalid")
                     question.scrollIntoView({block: 'center', inline: 'nearest'});
+
                     return null // if invalid
                 }
 

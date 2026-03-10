@@ -6,7 +6,7 @@
 @import "../questions/radio/radio.css";
 @import "../questions/scorebox/scorebox.css";
 @import "../questions/checkbox/checkbox.css";
-@import "../questions/test/test.css";
+@import "../questions/cycle/cycle.css";
 @import "../questions/tripleScoreBox/triplescorebox.css";
 @import "../questions/inputbox/inputbox.css";
 @import "bottom-navigation.css";
@@ -50,6 +50,7 @@ body, .page {
 }
 
 .question-container {
+    margin-top: 0.5em;
     border: var(--color-border) var(--border-width-small) solid;
     border-radius: var(--border-radius-medium);
     margin-bottom: 0.5em;

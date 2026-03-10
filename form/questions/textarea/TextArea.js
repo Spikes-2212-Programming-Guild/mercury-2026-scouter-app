@@ -1,12 +1,17 @@
-import {getFromLocalStorage, setToLocalStorage} from "../../../Storage.js";
+import {getFromLocalStorage, isInLocalStorage, setToLocalStorage} from "../../../Storage.js";
 
 export function renderTextArea(jsonQuestionData, questionContainer) {
     let textarea = document.getElementById(jsonQuestionData.id);
     if (textarea) {
-        // reset to default if already exists
+        // clear
         textarea.value = '';
         setToLocalStorage(jsonQuestionData.id, textarea.value)
         return;
+    }
+
+    // skippable
+    if (!isInLocalStorage(jsonQuestionData.id)) {
+        setToLocalStorage(jsonQuestionData.id, '');
     }
 
     textarea = document.createElement('textarea');

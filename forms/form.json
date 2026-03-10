@@ -316,7 +316,9 @@
                 {
                     "id": "match-number",
                     "title": "Match Number",
-                    "type": "ScoreBox"
+                    "type": "ScoreBox",
+                    "minValue": 1,
+                    "maxValue": 200
                 }
             ]
         },
@@ -324,33 +326,8 @@
             "title": "Auto",
             "questions": [
                 {
-                    "type": "container",
-                    "title": "Fuel",
-                    "questions": [
-                        {
-                            "id": "auto-hub-score",
-                            "title": "Scores",
-                            "type": "TripleScoreBox",
-                            "skippable": true
-                        },
-                        {
-                            "id": "auto-pass",
-                            "title": "Passes",
-                            "type": "TripleScoreBox",
-                            "skippable": true
-                        }
-                    ]
-                },
-                {
-                    "id": "auto-accuracy",
-                    "title": "Accuracy",
-                    "type": "List",
-                    "choices": [
-                        "Didn't miss (100-90%)",
-                        "Missed a bit (90-80%)",
-                        "Missed a lot (80-60%)",
-                        "Missed most (60-0%)"
-                    ]
+                    "id": "auto-cycles",
+                    "type": "Cycle"
                 },
                 {
                     "id": "auto-climb",
@@ -367,29 +344,22 @@
                 {
                     "type": "container",
                     "title": "Got fuel from",
-                    "align": "grid",
                     "questions": [
                         {
-                            "id": "auto-picked-from-depot",
+                            "id": "auto-fuel-from-depot",
                             "title": "Depot",
                             "align": "horizontal",
                             "type": "CheckBox"
                         },
                         {
-                            "id": "auto-picked-from-outpost",
-                            "title": "Outpost",
+                            "id": "auto-fuel-from-outpost",
+                            "title": "Outpost (Feeder)",
                             "align": "horizontal",
                             "type": "CheckBox"
                         },
                         {
-                            "id": "auto-picked-from-neutral",
-                            "title": "Neutral",
-                            "align": "horizontal",
-                            "type": "CheckBox"
-                        },
-                        {
-                            "id": "auto-picked-from-floor",
-                            "title": "Floor",
+                            "id": "auto-fuel-from-neutral",
+                            "title": "Neutral Zone",
                             "align": "horizontal",
                             "type": "CheckBox"
                         }
@@ -401,46 +371,44 @@
             "title": "Teleop",
             "questions": [
                 {
+                    "id": "teleop-cycles",
+                    "type": "Cycle"
+                },
+                {
                     "type": "container",
-                    "title": "Fuel",
+                    "title": "What the robot did while Hub Inactive",
                     "questions": [
                         {
-                            "id": "teleop-hub-score",
-                            "title": "Scores",
-                            "type": "TripleScoreBox",
-                            "skippable": true
+                            "id": "teleop-inactive-defended",
+                            "title": "Defended",
+                            "align": "horizontal",
+                            "type": "CheckBox"
                         },
                         {
-                            "id": "teleop-pass",
-                            "title": "Passes",
-                            "type": "TripleScoreBox",
-                            "skippable": true
+                            "id": "teleop-inactive-collected",
+                            "title": "Collected",
+                            "align": "horizontal",
+                            "type": "CheckBox"
+                        },
+                        {
+                            "id": "teleop-inactive-passed",
+                            "title": "Passed",
+                            "align": "horizontal",
+                            "type": "CheckBox"
+                        },
+                        {
+                            "id": "teleop-inactive-blocked-bump",
+                            "title": "blocked bump",
+                            "align": "horizontal",
+                            "type": "CheckBox"
+                        },
+                        {
+                            "id": "teleop-inactive-blocked-trench",
+                            "title": "blocked trench",
+                            "align": "horizontal",
+                            "type": "CheckBox"
                         }
                     ]
-                },
-                {
-                    "id": "teleop-accuracy",
-                    "title": "Accuracy",
-                    "type": "List",
-                    "choices": [
-                        "Didn't miss (100-90%)",
-                        "Missed a bit (90-80%)",
-                        "Missed a lot (80-60%)",
-                        "Missed most (60-0%)"
-                    ]
-                },
-                {
-                    "id": "teleop-inactive",
-                    "title": "What the robot did while hub inactive",
-                    "type": "List",
-                    "choices": [
-                        "defended",
-                        "collected",
-                        "passed",
-                        "blocked bump or trench"
-                    ],
-                    "multiple": true,
-                    "skippable": true
                 }
             ]
         },
@@ -448,13 +416,8 @@
             "title": "End",
             "questions": [
                 {
-                    "id": "end-shot",
-                    "title": "Shot to Hub during endgame",
-                    "type": "List",
-                    "choices": [
-                        "Yes",
-                        "No"
-                    ]
+                    "id": "end-cycles",
+                    "type": "Cycle"
                 },
                 {
                     "type": "container",
@@ -505,9 +468,7 @@
                     "choices": [
                         "Working Normally",
                         "Broken",
-                        "Partially Broken",
                         "Struggling",
-                        "No Connection",
                         "Unknown"
                     ]
                 },

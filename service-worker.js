@@ -3,7 +3,7 @@ const CACHE_NAME = 'Mercury2026';
 const FILES_TO_CACHE = [
     './',
     './index.html',
-    './form.json',
+    './forms/form.json',
     './Router.js',
     './Storage.js',
     './config/constants.css',
@@ -35,8 +35,6 @@ const FILES_TO_CACHE = [
     './form/questions/radio/Radio.js',
     './form/questions/scorebox/scorebox.css',
     './form/questions/scorebox/ScoreBox.js',
-    './form/questions/test/test.css',
-    './form/questions/test/Test.js',
     './form/questions/textarea/textarea.css',
     './form/questions/textarea/TextArea.js',
     './form/questions/tripleScoreBox/triplescorebox.css',
@@ -76,6 +74,14 @@ self.addEventListener("activate", event => {
 });
 
 self.addEventListener("fetch", event => {
+
+    // const url = new URL(event.request.url);
+    //
+    // // Ignore external requests
+    // if (url.origin !== self.location.origin) {
+    //     return;
+    // }
+
     event.respondWith(
         caches.open(CACHE_NAME).then(cache =>
             cache.match(event.request).then(cachedResponse => {

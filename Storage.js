@@ -27,7 +27,7 @@ export function getFromLocalStorage(key) {
 }
 
 export function isInLocalStorage(key) {
-    return localStorage.getItem(key);
+    return localStorage.getItem(key) !== null;
 }
 
 export function removeFromLocalStorage(key) {

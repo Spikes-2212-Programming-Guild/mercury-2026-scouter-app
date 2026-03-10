@@ -1,0 +1,95 @@
+.Cycle {
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.cycleAddButton {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.1em;
+
+    border: 1px solid var(--color-border);
+    font-size: var(--font-size-medium);
+    border-radius: var(--border-radius-small);
+    width: 100%;
+}
+
+.cycleAddIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-small);
+
+    position: absolute;
+    left: 0.3em;
+
+    font-weight: bold;
+    line-height: 1;
+}
+
+.cycleAddTitle {
+    text-align: center;
+}
+
+.cycleList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.6em;
+}
+
+.cycleItem {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-small);
+    padding: 0.75em;
+    gap: 1.25em;
+}
+
+.cycleItemCollapsed .cycleNumber,
+.cycleItemCollapsed .cycleAccuracy {
+    display: none;
+}
+
+.cycleItemCollapsed {
+    height: 2em;
+}
+
+.cycleRemoveButton {
+    position: absolute;
+    top: 0.2em;
+    left: 0.2em;
+    font-size: var(--font-size-small)
+}
+
+.cycleNumber {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+}
+
+.cycleNumberLabel, .cycleNumberStep, .cycleAccuracy > label {
+    font-size: var(--font-size-medium)
+}
+
+.cycleNumberGroup > * {
+    flex: 1;
+}
+
+.cycleNumberGroup {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.cycleAccuracy {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35em;
+}

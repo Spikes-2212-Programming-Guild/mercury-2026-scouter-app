@@ -11,69 +11,69 @@
 </head>
 <body>
 
-<link rel="manifest" href="manifest.json">
+<!--<link rel="manifest" href="manifest.json">-->
 <script type="module" src="Router.js"></script>
 
 <script>
-    const log = (msg) => {
-        // const label = document.createElement('div');
-        // label.textContent = msg;
-        // document.body.appendChild(label);
-    };
-
-    // Show if SW API exists
-    log("navigator.serviceWorker: " + navigator.serviceWorker);
-
-    if ('serviceWorker' in navigator) {
-
-        log("ServiceWorker supported");
-
-        async function clearOldData() {
-            const regs = await navigator.serviceWorker.getRegistrations();
-            for (const reg of regs) {
-                await reg.unregister();
-                log("Old SW unregistered: " + reg.scope);
-            }
-
-            const keys = await caches.keys();
-            for (const key of keys) {
-                await caches.delete(key);
-                log("Cache deleted: " + key);
-            }
-        }
-
-        // comment this out when not debugging
-        // clearOldData();
-
-        window.addEventListener("load", async () => {
-
-            try {
-
-                const reg = await navigator.serviceWorker.register('./service-worker.js', {scope: './'});
-
-                log("SW registered: " + reg.scope);
-
-                await navigator.serviceWorker.ready;
-
-                log("SW ready");
-
-                const keys = await caches.keys();
-
-                log("Cache keys: " + (keys.length ? keys.join(", ") : "none"));
-
-            } catch (err) {
-
-                log("SW registration failed: " + err);
-
-            }
-
-        });
-
-    } else {
-
-        log("ServiceWorker NOT supported");
-
-    }
+    // const log = (msg) => {
+    //     // const label = document.createElement('div');
+    //     // label.textContent = msg;
+    //     // document.body.appendChild(label);
+    // };
+    //
+    // // Show if SW API exists
+    // log("navigator.serviceWorker: " + navigator.serviceWorker);
+    //
+    // if ('serviceWorker' in navigator) {
+    //
+    //     log("ServiceWorker supported");
+    //
+    //     async function clearOldData() {
+    //         const regs = await navigator.serviceWorker.getRegistrations();
+    //         for (const reg of regs) {
+    //             await reg.unregister();
+    //             log("Old SW unregistered: " + reg.scope);
+    //         }
+    //
+    //         const keys = await caches.keys();
+    //         for (const key of keys) {
+    //             await caches.delete(key);
+    //             log("Cache deleted: " + key);
+    //         }
+    //     }
+    //
+    //     // comment this out when not debugging
+    //     // clearOldData();
+    //
+    //     window.addEventListener("load", async () => {
+    //
+    //         try {
+    //
+    //             const reg = await navigator.serviceWorker.register('./service-worker.js', {scope: './'});
+    //
+    //             log("SW registered: " + reg.scope);
+    //
+    //             await navigator.serviceWorker.ready;
+    //
+    //             log("SW ready");
+    //
+    //             const keys = await caches.keys();
+    //
+    //             log("Cache keys: " + (keys.length ? keys.join(", ") : "none"));
+    //
+    //         } catch (err) {
+    //
+    //             log("SW registration failed: " + err);
+    //
+    //         }
+    //
+    //     });
+    //
+    // } else {
+    //
+    //     log("ServiceWorker NOT supported");
+    //
+    // }
 </script>
 
 </body>
