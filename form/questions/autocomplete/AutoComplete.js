@@ -1,4 +1,4 @@
-import {getFromLocalStorage, removeFromLocalStorage, setToLocalStorage} from "../../../Storage.js";
+import {getFromLocalStorage, setToLocalStorage} from "../../../Storage.js";
 
 export function renderAutoComplete(jsonQuestionData, questionContainer) {
     const id = jsonQuestionData.id;
@@ -33,13 +33,13 @@ export function renderAutoComplete(jsonQuestionData, questionContainer) {
     const allowedValues = new Set(jsonQuestionData.choices.map(c => String(c.value).trim()));
     input.oninput = () => {
         const value = input.value.trim();
-        if (!allowedValues.has(value)) {
-            input.classList.add("invalid");
-            removeFromLocalStorage(id);
-        } else {
-            input.classList.remove("invalid");
-            setToLocalStorage(id, value);
-        }
+        // if (!allowedValues.has(value)) {
+        //     input.classList.add("invalid");
+        //     removeFromLocalStorage(id);
+        // } else {
+        input.classList.remove("invalid");
+        setToLocalStorage(id, value);
+        // }
     };
 
     questionContainer.appendChild(input);

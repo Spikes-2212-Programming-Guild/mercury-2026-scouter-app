@@ -1,6 +1,13 @@
 import {getFromLocalStorage, LOCAL_STORAGE, setToLocalStorage} from "../../Storage.js";
 import {SERVER_URL} from "../../config/Constants.js";
 
+/*
+
+    TODO:
+        maybe compress the submission json
+
+ */
+
 class SubmissionManager {
 
     constructor() {

@@ -289,34 +289,6 @@ export class FormApp {
 
         let answers = this.getFormAnswers()
 
-        // let answers = {"hello": "123"};
-
-        // let answers = {
-        //     "scouter-name": "ET",
-        //     "match-type": "Practice",
-        //     "alliance": "Red",
-        //     "team-number": "2212",
-        //     "match-number": "23",
-        //     "auto-hub-score": "60",
-        //     "auto-pass": "20",
-        //     "auto-accuracy": "Didn't miss (100-90%)",
-        //     "auto-climb": "Middle",
-        //     "auto-picked-from-depot": true,
-        //     "auto-picked-from-outpost": true,
-        //     "auto-picked-from-neutral": true,
-        //     "auto-picked-from-floor": false,
-        //     "teleop-hub-score": "10",
-        //     "teleop-pass": "20",
-        //     "teleop-accuracy": "Didn't miss (100-90%)",
-        //     "teleop-inactive": "collected,passed,blocked bump or trench",
-        //     "end-shot": "Yes",
-        //     "end-climb-position": "Didn't try",
-        //     "end-climb-level": "L3",
-        //     "post-affected-by-defense": "Yes",
-        //     "post-robot-status": "Working Normally",
-        //     "post-notes": "232131vף3]פ43"
-        // }
-
         // if all answers are invalid
         if (!answers) return
 
