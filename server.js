@@ -6,10 +6,10 @@ const app = express();
 const PORT = 5080;
 
 app.use(compression());
-app.use(express.static(path.join(__dirname + "/app/")));
+app.use(express.static(path.join(__dirname + "/docs/")));
 
 app.get("/favicon.ico", (req, res) => {
-    res.sendFile(__dirname + "/app/data/favicon.svg");
+    res.sendFile(__dirname + "/docs/data/favicon.svg");
 });
 
 app.get("/", (req, res) => {

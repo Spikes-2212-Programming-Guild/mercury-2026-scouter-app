@@ -4,7 +4,7 @@ import settings from "./Settings.js";
 import {MainApp} from "./main/MainApp.js";
 
 const FIELDS = {
-    ACTIVE_APP: "active-app",
+    ACTIVE_APP: "active-docs",
     FORM_APP: "form",
     MAIN_APP: "main",
 };
