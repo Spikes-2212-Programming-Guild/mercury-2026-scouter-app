@@ -1,0 +1,321 @@
+{
+    "formTitle": "Match Scouting",
+    "pages": [
+        {
+            "title": "Pre",
+            "questions": [
+                {
+                    "id": "name",
+                    "title": "Name",
+                    "type": "shortText",
+                    "required": true
+                },
+                {
+                    "id": "match-type",
+                    "title": "Match Type",
+                    "type": "list",
+                    "choices": [
+                        "Qualifications",
+                        "Practice"
+                    ],
+                    "required": true
+                },
+                {
+                    "id": "alliance",
+                    "title": "Alliance",
+                    "type": "list",
+                    "choices": [
+                        "Red",
+                        "Blue"
+                    ],
+                    "required": true
+                },
+                {
+                    "id": "team",
+                    "title": "Team Number",
+                    "choices": [
+                        {
+                            "value": 1937,
+                            "description": "Elysium"
+                        },
+                        {
+                            "value": 1942,
+                            "description": "Cinderella"
+                        },
+                        {
+                            "value": 1943,
+                            "description": "Neat Team"
+                        },
+                        {
+                            "value": 2212,
+                            "description": "The Spikes"
+                        },
+                        {
+                            "value": 2230,
+                            "description": "General Angels"
+                        },
+                        {
+                            "value": 3075,
+                            "description": "Ha-Dream Team"
+                        },
+                        {
+                            "value": 3316,
+                            "description": "D-Bug"
+                        },
+                        {
+                            "value": 4320,
+                            "description": "The Joker"
+                        },
+                        {
+                            "value": 4744,
+                            "description": "Ninjas"
+                        },
+                        {
+                            "value": 5291,
+                            "description": "Emperius"
+                        },
+                        {
+                            "value": 5554,
+                            "description": "The Poros"
+                        },
+                        {
+                            "value": 5614,
+                            "description": "Sycamore"
+                        },
+                        {
+                            "value": 5715,
+                            "description": "DRC"
+                        },
+                        {
+                            "value": 5928,
+                            "description": "MetalBoost"
+                        },
+                        {
+                            "value": 5990,
+                            "description": "TRIGON"
+                        },
+                        {
+                            "value": 6230,
+                            "description": "Team Koi"
+                        },
+                        {
+                            "value": 6740,
+                            "description": "Glue Gun & Glitter"
+                        },
+                        {
+                            "value": 7177,
+                            "description": "Turismo"
+                        },
+                        {
+                            "value": 7845,
+                            "description": "8BIT"
+                        },
+                        {
+                            "value": 8175,
+                            "description": "Piece of Mind"
+                        },
+                        {
+                            "value": 10139,
+                            "description": "Tsunami"
+                        },
+                        {
+                            "value": 11070,
+                            "description": "RoboRex"
+                        },
+                        {
+                            "value": 11329,
+                            "description": "G-Force"
+                        },
+                        {
+                            "value": 11332,
+                            "description": "Sunrise"
+                        },
+                        {
+                            "value": 11390,
+                            "description": "Habsor"
+                        },
+                        {
+                            "value": 11471,
+                            "description": "Neon"
+                        },
+                        {
+                            "value": 11478,
+                            "description": "Nexus"
+                        }
+                    ],
+                    "type": "autoComplete",
+                    "required": true
+                },
+                {
+                    "id": "match-number",
+                    "title": "Match Number",
+                    "type": "scoreBox",
+                    "required": true,
+                    "max": 100
+                }
+            ]
+        },
+        {
+            "title": "Auto",
+            "questions": [
+                {
+                    "id": "auto-cycles",
+                    "type": "cycles"
+                },
+                {
+                    "id": "auto-climb",
+                    "title": "Climb",
+                    "type": "list",
+                    "choices": [
+                        "Didn't try",
+                        "Failed",
+                        "Left",
+                        "Right",
+                        "Middle"
+                    ],
+                    "required": true
+                },
+                {
+                    "type": "container",
+                    "title": "Got fuel from",
+                    "questions": [
+                        {
+                            "id": "auto-fuel-from-depot",
+                            "title": "Depot",
+                            "align": "horizontal",
+                            "type": "checkbox"
+                        },
+                        {
+                            "id": "auto-fuel-from-outpost",
+                            "title": "Outpost (Feeder)",
+                            "align": "horizontal",
+                            "type": "checkbox"
+                        },
+                        {
+                            "id": "auto-fuel-from-neutral",
+                            "title": "Neutral Zone",
+                            "align": "horizontal",
+                            "type": "checkbox"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Teleop",
+            "questions": [
+                {
+                    "id": "teleop-cycles",
+                    "type": "cycles"
+                },
+                {
+                    "type": "container",
+                    "title": "What the robot did while Hub Inactive",
+                    "questions": [
+                        {
+                            "id": "teleop-inactive-defended",
+                            "title": "Defended",
+                            "align": "horizontal",
+                            "type": "checkbox"
+                        },
+                        {
+                            "id": "teleop-inactive-collected",
+                            "title": "Collected",
+                            "align": "horizontal",
+                            "type": "checkbox"
+                        },
+                        {
+                            "id": "teleop-inactive-passed",
+                            "title": "Passed",
+                            "align": "horizontal",
+                            "type": "checkbox"
+                        },
+                        {
+                            "id": "teleop-inactive-blocked-bump",
+                            "title": "blocked bump",
+                            "align": "horizontal",
+                            "type": "checkbox"
+                        },
+                        {
+                            "id": "teleop-inactive-blocked-trench",
+                            "title": "blocked trench",
+                            "align": "horizontal",
+                            "type": "checkbox"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "End",
+            "questions": [
+                {
+                    "id": "end-cycles",
+                    "type": "cycles"
+                },
+                {
+                    "type": "container",
+                    "title": "Climb",
+                    "questions": [
+                        {
+                            "id": "end-climb-position",
+                            "title": "Position",
+                            "type": "list",
+                            "choices": [
+                                "Didn't try",
+                                "Left",
+                                "Right",
+                                "Middle"
+                            ],
+                            "required": true
+                        },
+                        {
+                            "id": "end-climb-level",
+                            "title": "Level",
+                            "type": "list",
+                            "choices": [
+                                "Didn't try",
+                                "L1",
+                                "L2",
+                                "L3"
+                            ],
+                            "required": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Post",
+            "questions": [
+                {
+                    "id": "post-affected-by-defense",
+                    "title": "Was the robot affected by defense?",
+                    "type": "list",
+                    "choices": [
+                        "Yes",
+                        "No"
+                    ],
+                    "required": true
+                },
+                {
+                    "id": "post-robot-status",
+                    "title": "Robot Status",
+                    "type": "list",
+                    "choices": [
+                        "Working Normally",
+                        "Broken",
+                        "Struggling",
+                        "Unknown"
+                    ],
+                    "required": true
+                },
+                {
+                    "id": "post-notes",
+                    "title": "Notes",
+                    "type": "longText"
+                }
+            ]
+        }
+    ]
+}

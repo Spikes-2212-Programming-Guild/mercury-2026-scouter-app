@@ -1,0 +1,333 @@
+#form-app {
+    height: auto;
+}
+
+#actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+    height: 15em;
+}
+
+#clear-button, #back-button {
+    margin-top: 1em;
+    font-size: var(--font-size-medium);
+    background: none;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.invalid {
+    border: 3px solid var(--color-text-error) !important;
+}
+
+:focus input {
+    border: 3px solid var(--color-primary) !important;
+}
+
+.question.vertical {
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.question.horizontal {
+    flex-direction: row;
+    gap: 1em;
+}
+
+.question {
+    display: flex;
+    align-items: center;
+
+    padding: 0.75em;
+    margin: 0.25em;
+
+    background: var(--color-bg-light);
+    border: var(--color-bg) var(--border-radius-small) solid;
+    border-radius: var(--border-radius-large);
+
+    &.scoreBox > div > input,
+    .cycleNumberInput,
+    .cycleAccuracy > select,
+    > input,
+    > textarea,
+    > select {
+        border: 3px solid var(--color-bg-hover);
+        padding: 0.3em;
+        font-size: var(--font-size-medium);
+        width: 100%;
+
+        background-color: var(--color-bg-hover);
+        border-radius: var(--border-radius-medium);
+
+        box-shadow: var(--shadow-small) var(--shadow-color-gray);
+        color: var(--color-text-secondary);
+    }
+
+    > textarea {
+        min-height: 5em;
+        overflow: hidden;
+        font-size: var(--font-size-small);
+    }
+
+    > label {
+        text-align: center;
+        font-weight: 500;
+        font-size: var(--font-size-medium);
+        color: var(--color-text);
+        text-shadow: var(--text-shadow) var(--shadow-color-dark);
+    }
+}
+
+.container-title {
+    font-weight: 500;
+    text-align: center;
+    text-shadow: var(--text-shadow) var(--shadow-color-dark);
+    font-size: var(--font-size-medium);
+    color: var(--color-text-secondary);
+    margin: 0 auto;
+}
+
+.question-container {
+    background-color: var(--color-bg-light);
+    margin-top: 0.5em;
+    padding-bottom: 0.75em;
+
+    display: flex;
+    flex-direction: column;
+
+    border: var(--color-border) var(--border-width-small) solid;
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-medium) var(--shadow-color-dark);
+
+    > * {
+        border: none;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+.checkbox {
+    justify-content: space-between;
+
+    > input {
+
+        appearance: none;
+        -webkit-appearance: none; /* disable default checkbox */
+
+        width: 1.75em;
+        height: 1.75em;
+
+        position: relative;
+
+        border-radius: var(--border-radius-medium);
+        border: var(--border-width-large) solid var(--color-bg-hover);
+        background-color: var(--color-bg-hover);
+
+        cursor: pointer;
+
+        &:checked {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        &:checked::after {
+            content: "";
+            position: absolute;
+
+            width: 0.325em;
+            height: 0.75em;
+
+            border: solid white;
+            border-width: 0 0.2em 0.2em 0;
+
+            transform: rotate(45deg);
+
+            left: 50%;
+            top: 50%;
+            translate: -50% -60%;
+        }
+    }
+
+}
+
+.scoreBox > div {
+    width: 100%;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: stretch;
+
+    > input {
+        text-align: center;
+    }
+
+    > button {
+        border: none;
+        background: none;
+        padding: 0 0.5em;
+        color: var(--color-text);
+        font-size: var(--font-size-x-large);
+        justify-content: center;
+        align-self: center;
+    }
+}
+
+.Cycle {
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.cycleAddButton {
+    margin-top: 0.5em;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.1em;
+
+    border: 1px solid var(--color-border);
+    font-size: var(--font-size-medium);
+    border-radius: var(--border-radius-small);
+    width: 100%;
+
+    color: var(--color-text);
+    background-color: var(--color-bg-hover);
+    border-color: var(--color-bg-hover);
+}
+
+.cycleFields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.cycleAddIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-small);
+
+    position: absolute;
+    left: 0.3em;
+
+    font-weight: bold;
+    line-height: 1;
+}
+
+.cycleAddTitle {
+    text-align: center;
+}
+
+.cycleList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.6em;
+}
+
+.cycleItem {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-small);
+    gap: 1.25em;
+    text-align: center;
+    padding: 0 0.75em 0.75em 0.75em;
+}
+
+
+.cycleItemHeader {
+    cursor: pointer;
+    user-select: none;
+    min-height: 1.5em;
+}
+
+.cycleItem.collapsed .cycleFields {
+    display: none;
+}
+
+.cycleFields {
+    overflow: hidden;
+}
+
+.cycleRemoveButton {
+    position: absolute;
+    top: 0.2em;
+    left: 0.2em;
+    background: none;
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: var(--font-size-small);
+    padding: 0.1em;
+}
+
+.cycleItemLabel {
+    position: absolute;
+    top: 0.2em;
+    right: 0.2em;
+    font-size: var(--font-size-small);
+    padding: 0.1em;
+}
+
+.cycleNumber {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+}
+
+.cycleNumberLabel, .cycleNumberStep, .cycleAccuracy > label {
+    font-size: var(--font-size-medium)
+}
+
+.cycleNumberInput {
+    text-align: center;
+}
+
+.cycleAccuracy {
+    width: 100%;
+}
+
+.cycleAccuracy > select {
+    text-align: center;
+}
+
+.cycleNumberStep {
+    background: none;
+    color: var(--color-text);
+}
+
+.cycleNumberGroup > * {
+    flex: 1;
+}
+
+.cycleNumberGroup {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.cycleAccuracy {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35em;
+}
+
+
+/*!* Remove default input arrow buttons (spins) *!*/
+/*input::-webkit-outer-spin-button,*/
+/*input::-webkit-inner-spin-button {*/
+/*    -webkit-appearance: none;*/
+/*    margin: 0;*/
+/*}*/
+
+/*input[type="number"] {*/
+/*    -moz-appearance: textfield;*/
+/*}*/
+
+/*!* Remove datalist dropdown arrow *!*/
+/*input::-webkit-calendar-picker-indicator {*/
+/*    opacity: 0;*/
+/*}*/

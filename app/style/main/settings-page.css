@@ -1,0 +1,9 @@
+.settings {
+    #theme {
+        align-items: center;
+
+        select, label {
+            flex: 1;
+        }
+    }
+}
