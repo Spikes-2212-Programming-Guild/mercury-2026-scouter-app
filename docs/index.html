@@ -11,6 +11,20 @@
 <link rel="stylesheet" href="style/main/main-app.css">
 <link rel="stylesheet" href="style/form/form-app.css">
 
+<link rel="manifest" href="manifest.json">
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/service-worker.js")
+                .then(reg => {
+                    console.log("Service Worker registered:", reg.scope);
+                })
+                .catch(err => {
+                    console.error("Service Worker registration failed:", err);
+                });
+        });
+    }
+</script>
 <script type="module" src="AppRouter.js"></script>
 
 <div id="main-app" hidden>
@@ -29,7 +43,7 @@
         <button id="clear-button">Clear All</button>
         <button id="back-button">Back To Main Menu</button>
     </div>
-    <div id="bottom-nav" >
+    <div id="bottom-nav">
         <button id="previous-button">Previous</button>
         <button id="submit-button">Submit</button>
         <button id="next-button">Next</button>

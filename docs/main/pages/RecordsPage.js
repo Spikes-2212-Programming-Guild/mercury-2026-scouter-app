@@ -6,7 +6,7 @@ export class RecordsPage extends BasePage {
     _render() {
         this.container.innerHTML = `
             <div id="record-list" class="field"> 
-                ${this._generateRecords()}
+                <button id="resend-button">Resend Submissions</button>
             </div>
         `
     }
@@ -44,6 +44,10 @@ export class RecordsPage extends BasePage {
     }
 
     _attachEvents() {
+        document.getElementById("resend-button").addEventListener("click", async () => {
+            await submissionManager.uploadSubmissions();
+        });
+
         /*
         add an "active" class to the current active
          */
