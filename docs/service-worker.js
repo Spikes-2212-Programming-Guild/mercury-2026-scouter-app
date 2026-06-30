@@ -1,7 +1,7 @@
 const CACHE_NAME = "Mercury2026";
 
 self.addEventListener("install", event => {
-    self.skipWaiting();
+    event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener("activate", event => {
@@ -21,7 +21,6 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
     const request = event.request;
 
-    // ❌ Only handle GET requests (never cache sends like POST)
     if (request.method !== "GET") return;
 
     const url = new URL(request.url);
