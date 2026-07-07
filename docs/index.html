@@ -13,17 +13,17 @@
 
 <link rel="manifest" href="manifest.json">
 <script>
-    if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-            navigator.serviceWorker.register("/mercury-2026-scouter-app/service-worker.js")
-                .then(reg => {
-                    console.log("Service Worker registered:", reg.scope);
-                })
-                .catch(err => {
-                    console.error("Service Worker registration failed:", err);
-                });
-        });
-    }
+    // if ("serviceWorker" in navigator) {
+    //     window.addEventListener("load", () => {
+    //         navigator.serviceWorker.register("/mercury-2026-scouter-app/service-worker.js")
+    //             .then(reg => {
+    //                 console.log("Service Worker registered:", reg.scope);
+    //             })
+    //             .catch(err => {
+    //                 console.error("Service Worker registration failed:", err);
+    //             });
+    //     });
+    // }
 </script>
 <script type="module" src="AppRouter.js"></script>
 
