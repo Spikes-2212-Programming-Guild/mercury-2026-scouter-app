@@ -35,16 +35,24 @@
                     "title": "Team Number",
                     "choices": [
                         {
+                            "value": 1574,
+                            "description": "MisCar"
+                        },
+                        {
+                            "value": 1577,
+                            "description": "Steampunk"
+                        },
+                        {
+                            "value": 1690,
+                            "description": "Orbit"
+                        },
+                        {
                             "value": 1937,
                             "description": "Elysium"
                         },
                         {
                             "value": 1942,
                             "description": "Cinderella"
-                        },
-                        {
-                            "value": 1943,
-                            "description": "Neat Team"
                         },
                         {
                             "value": 2212,
@@ -55,28 +63,56 @@
                             "description": "General Angels"
                         },
                         {
+                            "value": 2231,
+                            "description": "OnyxTronix"
+                        },
+                        {
+                            "value": 2679,
+                            "description": "Atlantis"
+                        },
+                        {
+                            "value": 3065,
+                            "description": "Jaat"
+                        },
+                        {
                             "value": 3075,
                             "description": "Ha-Dream Team"
+                        },
+                        {
+                            "value": 3083,
+                            "description": "Artemis"
                         },
                         {
                             "value": 3316,
                             "description": "D-Bug"
                         },
                         {
+                            "value": 3339,
+                            "description": "BumbleB"
+                        },
+                        {
+                            "value": 3835,
+                            "description": "Vulcan"
+                        },
+                        {
                             "value": 4320,
                             "description": "The Joker"
                         },
                         {
+                            "value": 4416,
+                            "description": "Skynet"
+                        },
+                        {
+                            "value": 4586,
+                            "description": "PRIMO"
+                        },
+                        {
+                            "value": 4590,
+                            "description": "GreenBlitz"
+                        },
+                        {
                             "value": 4744,
                             "description": "Ninjas"
-                        },
-                        {
-                            "value": 5291,
-                            "description": "Emperius"
-                        },
-                        {
-                            "value": 5554,
-                            "description": "The Poros"
                         },
                         {
                             "value": 5614,
@@ -87,24 +123,16 @@
                             "description": "DRC"
                         },
                         {
-                            "value": 5928,
-                            "description": "MetalBoost"
-                        },
-                        {
                             "value": 5990,
                             "description": "TRIGON"
-                        },
-                        {
-                            "value": 6230,
-                            "description": "Team Koi"
                         },
                         {
                             "value": 6740,
                             "description": "Glue Gun & Glitter"
                         },
                         {
-                            "value": 7177,
-                            "description": "Turismo"
+                            "value": 7039,
+                            "description": "XO"
                         },
                         {
                             "value": 7845,
@@ -115,8 +143,12 @@
                             "description": "Piece of Mind"
                         },
                         {
-                            "value": 10139,
-                            "description": "Tsunami"
+                            "value": 8223,
+                            "description": "Mariners"
+                        },
+                        {
+                            "value": 9303,
+                            "description": "PORTAL"
                         },
                         {
                             "value": 11070,
@@ -141,6 +173,10 @@
                         {
                             "value": 11478,
                             "description": "Nexus"
+                        },
+                        {
+                            "value": 11480,
+                            "description": "EXODUS"
                         }
                     ],
                     "type": "autoComplete",
